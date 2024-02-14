@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UniRx;
+
+public class GoToTitleDialoguePresener : DialoguePresenter
+{
+    [SerializeField, Tooltip("タイトルに戻るボタン")]
+    private Button _goToTitleButtonVIew;
+    [SerializeField, Tooltip("背景ボタンを含む、タイトルに戻る用のダイアログ")]
+    private GoToTitleDialogue _goToTitleDialogueModel;
+
+    // Start is called before the first frame update
+    public override void Start()
+    {
+        base.Start();
+
+        SetDialogue(_goToTitleDialogueModel);
+
+        // タイトルに戻るボタンが押されたことをModel側に通知
+        _goToTitleButtonVIew.OnClickAsObservable()
+                .Subscribe(x =>
+                {
+                    _goToTitleDialogueModel.GoToTitle();
+                })
+                .AddTo(this);
+    }
+}
