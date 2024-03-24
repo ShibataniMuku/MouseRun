@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
-public class ScoreItem : Item
+public class ScoreItem : MonoBehaviour, IPickUpable
 {
     [SerializeField]
     int _addedScore = 1;
@@ -26,5 +27,13 @@ public class ScoreItem : Item
             collision.gameObject.GetComponent<Characters>().AddScore(_addedScore);
             gameObject.SetActive(false);
         }
+    }
+
+    public void GetItem()
+    {
+
+        // ここに、得点を加算する処理を記述
+
+        gameObject.SetActive(false);
     }
 }

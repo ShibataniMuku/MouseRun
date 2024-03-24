@@ -186,6 +186,6 @@ public class Characters : MonoBehaviour
     /// <param name="score">“¾“_</param>
     public void AddScore(int score)
     {
-        _gameManager.AddScore(score);
+        //_gameManager.AddScore(score);
     }
 }

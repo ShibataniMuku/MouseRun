@@ -17,8 +17,6 @@ public class AudioPresenter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("kkkkkkkkkkkkkkk");
-
         SearchVolumeSlider();
 
         _masterSlider.OnValueChangedAsObservable()

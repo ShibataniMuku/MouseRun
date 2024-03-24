@@ -973,7 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb0ec23c9889cb44ba9b15f9beb8f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeModel: {fileID: 6913034033013017472}
+  _timeModel: {fileID: 6913034033013017473}
   _timeView: {fileID: 620756950}
 --- !u!114 &1329501715 stripped
 MonoBehaviour:
@@ -1249,7 +1249,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0.5157232, b: 0.5157232, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2010,7 +2010,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStarterView: {fileID: 1866892913}
-  gameStarterModel: {fileID: 6913034033013017472}
 --- !u!1 &1871239399
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,6 +2574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1846273431949421621}
   - component: {fileID: 6913034033013017472}
+  - component: {fileID: 6913034033013017473}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -2828,7 +2828,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed710c643dd08841b49a7a0badf811b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultTime: 60
+--- !u!114 &6913034033013017473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748303959196422453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58da34eab8933b245a2251ae8de2f342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7735446750316027207 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 268968647094471532, guid: 376f95cd8d1ad7b4685ff688550af466, type: 3}

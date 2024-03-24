@@ -1,6 +1,8 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UniRx.Triggers;
 using UnityEngine;
 
 public class ScoreView : MonoBehaviour
@@ -20,8 +22,10 @@ public class ScoreView : MonoBehaviour
     /// <summary>
     /// スコア表示を更新する
     /// </summary>
-    public void ResetScoreText(int score)
+    public void ResetScoreText(Score score)
     {
-        _scoreText.GetComponent<TextMeshProUGUI>().text = score.ToString();
+        _scoreText.GetComponent<TextMeshProUGUI>().text = score.Value.ToString();
+        _scoreText.transform.localScale = Vector3.one * 1.1f;
+        _scoreText.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutBounce);
     }
 }

@@ -132,6 +132,10 @@ public class PipeManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ‰ñ“]‰Â”\‚©‚ğİ’è
+    /// </summary>
+    /// <param name="canRotational">true:‰ñ“]‰Â, false:‰ñ“]•s‰Â</param>
     public static void InformCanRotateable(bool canRotational)
     {
         Debug.Log("‘€ì");

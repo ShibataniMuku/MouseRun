@@ -6,14 +6,14 @@ using UnityEngine;
 public class TimePresenter : MonoBehaviour
 {
     [SerializeField]
-    GameManager _timeModel;
+    PlayingPhase _timeModel;
     [SerializeField]
     TimeView _timeView;
 
     // Start is called before the first frame update
     void Start()
     {
-        _timeModel.CurrentTime
+        _timeModel.Countdown.RemainingTime
             .Subscribe(x =>
             {
                 _timeView.ResetTimeText(x);

@@ -194,20 +194,9 @@ public class AudioManager : MonoBehaviour
         if (isSingle) { _seAudioSource.Play(); } else { _seAudioSource.PlayOneShot(_audioData.seData[index].clip); }
     }
 
-    public void StopSE()
-    {
-        _seAudioSource.Stop();
-    }
-
-    public void PauseSE()
-    {
-        _seAudioSource.Pause();
-    }
-
-    public void UnPauseSE()
-    {
-        _seAudioSource.UnPause();
-    }
+    public void StopSE() { _seAudioSource.Stop(); }
+    public void PauseSE() { _seAudioSource.Pause(); }
+    public void UnPauseSE() { _seAudioSource.UnPause(); }
 
     // ÉVÅ[ÉìÇ™ì«Ç›çûÇ‹ÇÍÇΩç€Ç…åƒÇŒÇÍÇÈ
     private void PlayStackedBgm(Scene thisScene, Scene nextScene)
@@ -233,18 +222,7 @@ public class AudioManager : MonoBehaviour
         _bgmAudioSource.Play();
     }
 
-    public void StopBGM()
-    {
-        _bgmAudioSource.Stop();
-    }
-
-    public void PauseBGM()
-    {
-        _bgmAudioSource.Pause();
-    }
-
-    public void UnPauseBGM()
-    {
-        _bgmAudioSource.UnPause();
-    }
+    public void StopBGM() { _bgmAudioSource.Stop(); }
+    public void PauseBGM() { _bgmAudioSource.Pause(); }
+    public void UnPauseBGM() { _bgmAudioSource.UnPause(); }
 }

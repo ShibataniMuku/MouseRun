@@ -15,6 +15,6 @@ public class GoToTitleDialogue : Dialogue, IDialogue
     /// </summary>
     public void GoToTitle()
     {
-        SceneTransitioner.sceneTransitionerInstance.TransitionScene(SceneEnum.Title);
+        SceneTransitioner.sceneTransitionerInstance.TransitionNextScene(SceneEnum.Title);
     }
 }

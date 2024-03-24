@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 public enum TravelDirection // ã‰º¶‰E‚Ì•ûŒü
 {
     up = 0,
@@ -12,4 +10,10 @@ public enum Way // ‰ñ“]‚Ì•ûŒü
 {
     clockwise,
     counterclockwise
+}
+
+public enum SceneEnum // ƒV[ƒ“–¼
+{
+    Title,
+    Main
 }

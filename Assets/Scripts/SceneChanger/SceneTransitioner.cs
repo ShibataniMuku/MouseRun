@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -7,12 +9,23 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransitioner : MonoBehaviour
 {
-    public IReadOnlyReactiveProperty<bool> HasTransitionedScene => _hasTransitionedScene;
-    private readonly BoolReactiveProperty _hasTransitionedScene = new BoolReactiveProperty(false); // true:遷移前, false;遷移後
-
     public static SceneTransitioner sceneTransitionerInstance;
-    [HideInInspector]
-    public bool onCompleteBlind = false;
+
+    // ブラックイン開始時に呼ばれる
+    public delegate UniTask StartBlackInDelegate();
+    public event StartBlackInDelegate OnStartBlackIn;
+
+    // ブラックイン完了時に呼ばれる
+    public delegate UniTask CompleteBlackInDelegate();
+    public event CompleteBlackInDelegate OnCompleteBlackIn;
+
+    // ブラックアウト開始時に呼ばれる
+    public delegate UniTask StartBlackOutDelegate();
+    public event StartBlackOutDelegate OnStartBlackOut;
+
+    // ブラックアウト完了時に呼ばれる
+    public delegate UniTask CompleteBlackOutDelegate();
+    public event CompleteBlackOutDelegate OnCompleteBlackOut;
 
     // Start is called before the first frame update
     private void Awake()
@@ -26,9 +39,6 @@ public class SceneTransitioner : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        // シーンが読み込まれたら呼ばれる
-        SceneManager.activeSceneChanged += ActiveSceneChanged;
     }
 
     // Update is called once per frame
@@ -41,42 +51,20 @@ public class SceneTransitioner : MonoBehaviour
     /// シーンを遷移する
     /// </summary>
     /// <param name="scene">遷移先シーン</param>
-    public void TransitionScene(SceneEnum scene)
+    public async UniTask TransitionNextScene(SceneEnum scene)
     {
-        StartCoroutine(LoadScene(scene));
-    }
-    IEnumerator LoadScene(SceneEnum scene)
-    {
-        AnimateSceneTransition(true);
-        onCompleteBlind = false;
-
-        yield return new WaitUntil(() => onCompleteBlind);
-
+        await OnStartBlackOut();
+        await OnCompleteBlackOut();
         SceneManager.LoadScene(scene.ToString());
     }
 
     /// <summary>
-    /// 画面を覆うアニメーションを再生
+    /// シーンが遷移完了
     /// </summary>
-    /// <param name="isBlind">true:閉める, false;開ける</param>
-    private void AnimateSceneTransition(bool isBlind)
+    public async UniTask CompleteTransitionScene()
     {
-        _hasTransitionedScene.SetValueAndForceNotify(isBlind);
+        await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
+        await OnStartBlackIn();
+        await OnCompleteBlackIn();
     }
-
-    private void ActiveSceneChanged(Scene thisScene, Scene nextScene)
-    {
-        StartCoroutine(Tmp());
-    }
-    IEnumerator Tmp()
-    {
-        yield return new WaitForSeconds(0.3f);
-        AnimateSceneTransition(false);
-    }
-}
-
-public enum SceneEnum // シーン名
-{
-    Title,
-    Main
 }
