@@ -8,8 +8,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public bool _IsCowntdown { get; set; } = true;
-
     public static GameManager gameManagerInstance;
 
     public IReadOnlyReactiveProperty<Score> Score => _score;

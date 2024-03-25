@@ -13,16 +13,21 @@ public class PlayingPhase : MonoBehaviour, IPhase
     public Countdown Countdown => _countdown;
     private Countdown _countdown;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         _countdown = new Countdown(new TimeLimit(DEFAULT_TIME));
+    }
+
+    // Start is called before the first frame update
+    async void Start()
+    {
+        await OnCompleteTransition();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("remainingTime: " + _countdown.RemainingTime.Value);
     }
 
     public async UniTask OnCompleteTransition()
@@ -35,7 +40,6 @@ public class PlayingPhase : MonoBehaviour, IPhase
         await SceneTransitioner.sceneTransitionerInstance.CompleteTransitionScene();
 
         PipeManager.InformCanRotateable(true);
-        GameManager.gameManagerInstance._IsCowntdown = true;
         _countdown.StartCountdown();
 
         Debug.Log("ゲームスタート！");
@@ -44,7 +48,6 @@ public class PlayingPhase : MonoBehaviour, IPhase
 
         Debug.Log("ゲーム終了！");
         PipeManager.InformCanRotateable(false);
-        GameManager.gameManagerInstance._IsCowntdown = false;
     }
 
     public async UniTask OnStartTransition()
