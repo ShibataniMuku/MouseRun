@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
+using Cysharp.Threading.Tasks;
 
 public class Characters : MonoBehaviour
 {
@@ -14,12 +15,22 @@ public class Characters : MonoBehaviour
     private Vector2Int _currentLocation; // 現在地
     private Sequence _moveSq;
     private Transform _trans; // キャラクターのtransform
-    private GameManager _gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        PlayingPhase.playingPhaseInstance.SetOnStartGame(() =>
+        {
+            _moveSq.Restart();
+            return UniTask.CompletedTask;
+        });
+
+        PlayingPhase.playingPhaseInstance.SetOnFinishGame(() =>
+        {
+            _moveSq.Pause();
+            return UniTask.CompletedTask;
+        });
+
         _trans = transform;
 
         // マウスの初期位置を決定
@@ -29,6 +40,7 @@ public class Characters : MonoBehaviour
         _currentLocation = new Vector2Int(posX, posY); // 現在地
         _travelDirection = PipeManager.pipes[posX, posY].GetPipeDirections()[Random.Range(0, 2)]; // 現在の進行方向
         ResetPath();
+        _moveSq.Pause();
     }
 
     /// <summary>
@@ -180,12 +192,8 @@ public class Characters : MonoBehaviour
         _travelDirection = PipeManager.pipes[pos.x, pos.y].GetExitPoint(pos, t);
     }
 
-    /// <summary>
-    /// 得点を追加
-    /// </summary>
-    /// <param name="score">得点</param>
-    public void AddScore(int score)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        //_gameManager.AddScore(score);
+        collision.GetComponent<IPickUpable>()?.GetItem();
     }
 }

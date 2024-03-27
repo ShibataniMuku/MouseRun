@@ -13,14 +13,23 @@ public class GameStarterPresenter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneTransitioner.sceneTransitionerInstance.OnCompleteBlackIn += ShowGameViewEventHandler;
+        SceneTransitioner.sceneTransitionerInstance.OnCompleteBlackIn += StartGameAnimationHandler;
+        PlayingPhase.playingPhaseInstance.OnFinishGame += FinishGameAnimationHandler;
     }
 
-    private async UniTask ShowGameViewEventHandler()
+    private async UniTask StartGameAnimationHandler()
     {
         var cts = new CancellationTokenSource();
         var token = cts.Token;
 
-        await gameStarterView.Countdown(token);
+        await gameStarterView.StartGameAnimation(token);
+    }
+
+    private async UniTask FinishGameAnimationHandler()
+    {
+        var cts = new CancellationTokenSource();
+        var token = cts.Token;
+
+        await gameStarterView.FinishGameAnimation(token);
     }
 }

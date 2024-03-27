@@ -33,7 +33,9 @@ public class Countdown
 
                 if (_remainingTime.Value < 0)
                 {
+                    _remainingTime.Value = 0;
                     _isCompleteCountdown = true;
+                    _isCountdown = false;
                 }
             }
 

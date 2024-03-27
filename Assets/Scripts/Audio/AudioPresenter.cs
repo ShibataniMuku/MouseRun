@@ -53,8 +53,8 @@ public class AudioPresenter : MonoBehaviour
     /// </summary>
     private void SearchVolumeSlider()
     {
-        _masterSlider = GameObject.Find("MasterSlider").GetComponent<Slider>();
-        _bgmSlider = GameObject.Find("BGMSlider").GetComponent<Slider>();
-        _seSlider = GameObject.Find("SESlider").GetComponent<Slider>();
+        _masterSlider = GameObject.Find("MasterSlider")?.GetComponent<Slider>();
+        _bgmSlider = GameObject.Find("BGMSlider")?.GetComponent<Slider>();
+        _seSlider = GameObject.Find("SESlider")?.GetComponent<Slider>();
     }
 }

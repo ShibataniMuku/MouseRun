@@ -15,5 +15,6 @@ public enum Way // ‰ñ“]‚Ì•ûŒü
 public enum SceneEnum // ƒV[ƒ“–¼
 {
     Title,
-    Main
+    Main, 
+    Result
 }

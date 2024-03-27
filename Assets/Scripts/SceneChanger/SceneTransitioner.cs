@@ -53,8 +53,8 @@ public class SceneTransitioner : MonoBehaviour
     /// <param name="scene">ëJà⁄êÊÉVÅ[Éì</param>
     public async UniTask TransitionNextScene(SceneEnum scene)
     {
-        await OnStartBlackOut();
-        await OnCompleteBlackOut();
+        await UniTask.WhenAll(OnStartBlackOut());
+        //await UniTask.WhenAll(OnCompleteBlackOut());
         SceneManager.LoadScene(scene.ToString());
     }
 
@@ -64,7 +64,7 @@ public class SceneTransitioner : MonoBehaviour
     public async UniTask CompleteTransitionScene()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
-        await OnStartBlackIn();
-        await OnCompleteBlackIn();
+        await UniTask.WhenAll(OnStartBlackIn());
+        await UniTask.WhenAll(OnCompleteBlackIn());
     }
 }

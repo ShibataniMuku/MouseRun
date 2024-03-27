@@ -1,5 +1,7 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class PipeManager : MonoBehaviour
@@ -28,13 +30,19 @@ public class PipeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // 操作可能フェーズになったら、回転可能にする
+        PlayingPhase.playingPhaseInstance.SetOnStartGame(() =>
+        {
+            foreach (Pipe pipe in pipes) pipe.SetCanRotational(true);
+            return UniTask.CompletedTask;
+        });
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // 操作不能フェーズになったら、回転不能にする
+        PlayingPhase.playingPhaseInstance.SetOnFinishGame(() =>
+        {
+            foreach (Pipe pipe in pipes) pipe.SetCanRotational(false);
+            return UniTask.CompletedTask;
+        });
     }
 
     /// <summary>
@@ -129,19 +137,6 @@ public class PipeManager : MonoBehaviour
             {
                 return pipeType[1].pipeObj;
             }
-        }
-    }
-
-    /// <summary>
-    /// 回転可能かを設定
-    /// </summary>
-    /// <param name="canRotational">true:回転可, false:回転不可</param>
-    public static void InformCanRotateable(bool canRotational)
-    {
-        Debug.Log("操作");
-        foreach (Pipe pipe in pipes)
-        {
-            pipe.SetCanRotational(canRotational);
         }
     }
 }
