@@ -17,6 +17,6 @@ public class RetryDialogue : Dialogue, IDialogue
     public void Retry()
     {
         AudioManager.audioManagerInstance.StackBgm(BgmEnum.title);
-        SceneTransitioner.sceneTransitionerInstance.TransitionScene(SceneEnum.Main);
+        SceneTransitioner.sceneTransitionerInstance.TransitionNextScene(SceneEnum.Main);
     }
 }

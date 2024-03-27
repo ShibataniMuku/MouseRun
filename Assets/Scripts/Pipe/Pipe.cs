@@ -201,6 +201,6 @@ public class Pipe : MonoBehaviour, IPointerClickHandler
     public void SetCanRotational(bool canRotational)
     {
         this.canRotational = canRotational;
-        Debug.Log(this.canRotational);
+        Debug.Log("âÒì]â¬î\Ç©î€Ç©ÅF" + this.canRotational);
     }
 }

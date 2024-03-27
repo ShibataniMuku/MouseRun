@@ -6,14 +6,12 @@ using UnityEngine;
 public class ScoreItemManagerPresenter : MonoBehaviour
 {
     [SerializeField]
-    private GameManager gameManager;
-    [SerializeField]
     private ScoreItemManager scoreItemManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManager.Score
+        ScoreManager.scoreManagerInstance.Score
             .SkipLatestValueOnSubscribe()
             .Subscribe(x =>
             {

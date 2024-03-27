@@ -1,11 +1,10 @@
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UniRx;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BlinderView : MonoBehaviour
 {
@@ -20,9 +19,6 @@ public class BlinderView : MonoBehaviour
 
     RectTransform _maskRect;
 
-    public IReadOnlyReactiveProperty<bool> OnCompleteTransition => _onCompleteTransition;
-    private readonly BoolReactiveProperty _onCompleteTransition = new BoolReactiveProperty(false);
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,43 +32,49 @@ public class BlinderView : MonoBehaviour
     }
 
     /// <summary>
-    /// 画面遷移のためのフェードイン・アウト
+    /// 円状にブラックイン
     /// </summary>
-    /// <param name="isBlind">フェードアウトか否か</param>
-    public void SwitchScreenBlinder(bool isBlind)
+    /// <param name="token"></param>
+    /// <returns></returns>
+    public async UniTask CircleIn(CancellationToken token)
     {
-        if (isBlind)
-        {
-            // フェードアウト
-            _blinder.SetActive(true);
-            _mask.SetActive(true);
-            _maskRect = _mask.GetComponent<RectTransform>();
-            _maskRect.sizeDelta = Vector2.one * Screen.height * 1.5f;
-            _maskRect.DOSizeDelta(Vector2.zero, _sceneTransDuration)
-                .SetEase(_blinderAnimCurve)
-                .SetUpdate(true)
-                .OnComplete(() =>
-                {
-                    Time.timeScale = 1;
-                    _onCompleteTransition.SetValueAndForceNotify(true);
-                });
-        }
-        else
-        {
-            // フェードイン
-            _blinder.SetActive(true);
-            _mask.SetActive(true);
-            _maskRect = _mask.GetComponent<RectTransform>();
-            _maskRect.sizeDelta = Vector2.zero;
-            _maskRect.DOSizeDelta(Vector2.one * Screen.height * 1.5f, _sceneTransDuration)
-                .SetEase(_blinderAnimCurve)
-                .SetUpdate(true)
-                .OnComplete(() =>
-                {
-                    _blinder.SetActive(false);
-                    _mask.SetActive(false);
-                    _onCompleteTransition.SetValueAndForceNotify(true);
-                });
-        }
+        _blinder.SetActive(true);
+        _mask.SetActive(true);
+        _maskRect = _mask.GetComponent<RectTransform>();
+
+        _maskRect.sizeDelta = Vector2.zero;
+        _maskRect.DOSizeDelta(Vector2.one * Screen.height * 1.5f, _sceneTransDuration)
+            .SetEase(_blinderAnimCurve)
+            .SetUpdate(true)
+            .OnComplete(() =>
+            {
+                _blinder.SetActive(false);
+                _mask.SetActive(false);
+            });
+
+        await UniTask.Delay(1000);
+    }
+
+    /// <summary>
+    /// 円状にブラックアウト
+    /// </summary>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    public async UniTask CircleOut(CancellationToken token)
+    {
+        _blinder.SetActive(true);
+        _mask.SetActive(true);
+        _maskRect = _mask.GetComponent<RectTransform>();
+
+        _maskRect.sizeDelta = Vector2.one * Screen.height * 1.5f;
+        _maskRect.DOSizeDelta(Vector2.zero, _sceneTransDuration)
+            .SetEase(_blinderAnimCurve)
+            .SetUpdate(true)
+            .OnComplete(() =>
+            {
+                Time.timeScale = 1;
+            });
+
+        await UniTask.Delay(1000);
     }
 }
