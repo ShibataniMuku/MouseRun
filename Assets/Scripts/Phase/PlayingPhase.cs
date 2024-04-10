@@ -42,15 +42,12 @@ public class PlayingPhase : MonoBehaviour, IPhase
     // Start is called before the first frame update
     async void Start()
     {
-        await OnCompleteTransition();
+        SceneTransitioner.sceneTransitionerInstance.OnCompleteBlackIn += RunPhase;
     }
 
-    public async UniTask OnCompleteTransition()
+    public async UniTask RunPhase()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
-
-        // ブラックイン
-        await SceneTransitioner.sceneTransitionerInstance.CompleteTransitionScene();
 
         _countdown.StartCountdown();
 
@@ -73,11 +70,6 @@ public class PlayingPhase : MonoBehaviour, IPhase
             
             SceneTransitioner.sceneTransitionerInstance.TransitionNextScene(SceneEnum.Result);
         }
-    }
-
-    public async UniTask OnStartTransition()
-    {
-
     }
 
     public void SetOnStartGame(StartGameDelegate method){ OnStartGame += method; } // ゲーム開始時のデリゲートに追加

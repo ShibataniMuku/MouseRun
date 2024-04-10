@@ -17,16 +17,11 @@ public class ResultPhase : MonoBehaviour, IPhase
         
     }
 
-    public async UniTask OnCompleteTransition()
+    public async UniTask RunPhase()
     {
         // ブラックイン
         await SceneTransitioner.sceneTransitionerInstance.CompleteTransitionScene();
 
-
-    }
-
-    public async UniTask OnStartTransition()
-    {
 
     }
 }
