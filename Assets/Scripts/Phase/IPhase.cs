@@ -5,6 +5,5 @@ using UnityEngine;
 
 interface IPhase
 {
-    UniTask OnCompleteTransition();
-    UniTask OnStartTransition();
+    UniTask RunPhase();
 }

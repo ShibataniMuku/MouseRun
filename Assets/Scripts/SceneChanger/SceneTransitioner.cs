@@ -39,12 +39,25 @@ public class SceneTransitioner : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        // シーンの切り替わりを検知
+        SceneManager.activeSceneChanged += ActiveSceneChanged;
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    /// <summary>
+    /// シーンが遷移完了
+    /// </summary>
+    public async UniTask CompleteTransitionScene()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
+        await UniTask.WhenAll(OnStartBlackIn());
+        await UniTask.WhenAll(OnCompleteBlackIn());
     }
 
     /// <summary>
@@ -58,13 +71,8 @@ public class SceneTransitioner : MonoBehaviour
         SceneManager.LoadScene(scene.ToString());
     }
 
-    /// <summary>
-    /// シーンが遷移完了
-    /// </summary>
-    public async UniTask CompleteTransitionScene()
+    private void ActiveSceneChanged(Scene thisScene, Scene nextScene)
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
-        await UniTask.WhenAll(OnStartBlackIn());
-        await UniTask.WhenAll(OnCompleteBlackIn());
+        var _ = CompleteTransitionScene();
     }
 }
