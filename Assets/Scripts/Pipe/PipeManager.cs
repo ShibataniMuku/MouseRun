@@ -7,7 +7,7 @@ using UnityEngine;
 public class PipeManager : MonoBehaviour
 {
     [SerializeField, Header("パイプのマス数")]
-    Vector2Int gridCount;
+    public Vector2Int gridCount = new Vector2Int(6, 6);
 
     [SerializeField]
     private PipeType[] pipeType = new PipeType[2];
@@ -18,7 +18,7 @@ public class PipeManager : MonoBehaviour
 
     GameObject[,] pipeObjects;
     
-    public static Pipe[,] pipes;
+    public Pipe[,] pipes;
 
     private void Awake()
     {

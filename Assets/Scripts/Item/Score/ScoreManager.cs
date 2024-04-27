@@ -1,30 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UniRx;
-using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager
 {
-    public static ScoreManager scoreManagerInstance;
-
-    public IReadOnlyReactiveProperty<Score> Score => _score;
-    private readonly ReactiveProperty<Score> _score = new ReactiveProperty<Score>(new Score(0));
-
-    private void Awake()
-    {
-        if (scoreManagerInstance == null)
-        {
-            scoreManagerInstance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    public IReadOnlyReactiveProperty<Score> CurerntScore => _currentScore;
+    private readonly ReactiveProperty<Score> _currentScore = new ReactiveProperty<Score>(new Score(0));
 
     public void AddScore(Score score)
     {
-        _score.Value = _score.Value.AddScore(score);
+        _currentScore.Value = Score.Sum(_currentScore.Value, score);
     }
 }

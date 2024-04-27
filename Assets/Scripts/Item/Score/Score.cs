@@ -22,8 +22,8 @@ public class Score
         }
     }
 
-    public Score AddScore(Score score)
+    public static Score Sum(Score score1, Score score2)
     {
-        return new Score(_score +  score._score);
+        return new Score(score1.Value + score2.Value);
     }
 }

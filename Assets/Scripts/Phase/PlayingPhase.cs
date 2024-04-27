@@ -9,7 +9,7 @@ using UnityEngine;
 public class PlayingPhase : MonoBehaviour, IPhase
 {
     [SerializeField, Header("êßå¿éûä‘")]
-    private const float DEFAULT_TIME = 10;
+    private const float DEFAULT_TIME = 60;
 
     public static PlayingPhase playingPhaseInstance;
 
