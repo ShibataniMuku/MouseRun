@@ -7,7 +7,7 @@ using UniRx;
 public class GoToTitleDialoguePresener : DialoguePresenter
 {
     [SerializeField, Tooltip("タイトルに戻るボタン")]
-    private Button _goToTitleButtonVIew;
+    private TransitionToTitleButtonView _transitionToTitleButtonView;
     [SerializeField, Tooltip("背景ボタンを含む、タイトルに戻る用のダイアログ")]
     private GoToTitleDialogue _goToTitleDialogueModel;
 
@@ -19,7 +19,7 @@ public class GoToTitleDialoguePresener : DialoguePresenter
         SetDialogue(_goToTitleDialogueModel);
 
         // タイトルに戻るボタンが押されたことをModel側に通知
-        _goToTitleButtonVIew.OnClickAsObservable()
+        _transitionToTitleButtonView.buttonSubject
                 .Subscribe(x =>
                 {
                     _goToTitleDialogueModel.GoToTitle();

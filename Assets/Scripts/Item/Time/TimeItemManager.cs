@@ -55,7 +55,7 @@ public class TimeItemManager : MonoBehaviour, IItemManager
 
     public void PickUpItem(int posX, int posY, float time)
     {
-        _timeManager.AddTime(time);
+        _timeManager.MainTimer.AddTime(new TimeLimit(time));
         // ƒAƒCƒeƒ€î•ñ‚ğíœ
         _itemManager.RemoveItem(new Grid(posX, posY));
 

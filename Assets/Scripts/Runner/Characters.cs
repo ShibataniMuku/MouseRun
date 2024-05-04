@@ -13,6 +13,8 @@ public class Characters : MonoBehaviour
 
     [Inject]
     private PipeManager _pipeManager;
+    [Inject]
+    private PlayingPhase _playingPhase;
 
     private List<Transform> _path = new List<Transform>(); // ’Ê‰ß“_
     private TravelDirection _travelDirection; // is•ûŒü
@@ -23,13 +25,13 @@ public class Characters : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayingPhase.playingPhaseInstance.SetOnStartGame(() =>
+        _playingPhase.SetOnStartGame(() =>
         {
             _moveSq.Restart();
             return UniTask.CompletedTask;
         });
 
-        PlayingPhase.playingPhaseInstance.SetOnFinishGame(() =>
+        _playingPhase.SetOnFinishGame(() =>
         {
             _moveSq.Pause();
             return UniTask.CompletedTask;

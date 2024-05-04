@@ -1,8 +1,6 @@
 using Cysharp.Threading.Tasks;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using Zenject;
 
 public class PipeManager : MonoBehaviour
 {
@@ -20,6 +18,9 @@ public class PipeManager : MonoBehaviour
     
     public Pipe[,] pipes;
 
+    [Inject]
+    private PlayingPhase _playingPhase;
+
     private void Awake()
     {
         pipeObjects = new GameObject[gridCount.x, gridCount.y];
@@ -31,14 +32,14 @@ public class PipeManager : MonoBehaviour
     void Start()
     {
         // 操作可能フェーズになったら、回転可能にする
-        PlayingPhase.playingPhaseInstance.SetOnStartGame(() =>
+        _playingPhase.SetOnStartGame(() =>
         {
             foreach (Pipe pipe in pipes) pipe.SetCanRotational(true);
             return UniTask.CompletedTask;
         });
 
         // 操作不能フェーズになったら、回転不能にする
-        PlayingPhase.playingPhaseInstance.SetOnFinishGame(() =>
+        _playingPhase.SetOnFinishGame(() =>
         {
             foreach (Pipe pipe in pipes) pipe.SetCanRotational(false);
             return UniTask.CompletedTask;

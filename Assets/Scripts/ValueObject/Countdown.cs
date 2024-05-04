@@ -1,8 +1,5 @@
 using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UniRx;
 using UnityEngine;
 
@@ -17,6 +14,11 @@ public class Countdown
     private bool _isCompleteCountdown = false;
 
     public Countdown(TimeLimit timeLimit)
+    {
+        _remainingTime.Value = timeLimit.Value;
+    }
+
+    public void SetTimeLimit(TimeLimit timeLimit)
     {
         _remainingTime.Value = timeLimit.Value;
     }

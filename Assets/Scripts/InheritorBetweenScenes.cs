@@ -1,26 +1,13 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEngine;
 
-public class InheritorBetweenScenes : MonoBehaviour
+public class InheritorBetweenScenes
 {
-    public static InheritorBetweenScenes inheritorBetweenScenesInstance = null;
-
     private Dictionary<String, int> inheritedData = new Dictionary<String, int>();
 
-    private void Awake()
+    private InheritorBetweenScenes()
     {
-        if (inheritorBetweenScenesInstance == null)
-        {
-            inheritorBetweenScenesInstance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+
     }
 
     public void SetInheritedData(String key, int value)

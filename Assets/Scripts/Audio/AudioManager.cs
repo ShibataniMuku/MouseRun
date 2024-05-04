@@ -15,21 +15,12 @@ public class AudioManager : MonoBehaviour
 
     private AudioData _audioData;
     private BgmEnum stackedBgm;
+    private bool _isStacked = false; // BGMがスタックされているか否か
 
-    public static AudioManager audioManagerInstance;
+    //public static AudioManager audioManagerInstance;
 
     private void Awake()
     {
-        if (audioManagerInstance == null)
-        {
-            audioManagerInstance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         _audioData = GetAudioData();
     }
 
@@ -42,7 +33,7 @@ public class AudioManager : MonoBehaviour
         SceneManager.activeSceneChanged += PlayStackedBgm;
 
         // ================ ↓ とりあえずBGMをテストで流している ==============================
-        AudioManager.audioManagerInstance.PlayBGM(BgmEnum.title);
+       PlayBGM(BgmEnum.title);
     }
 
     /// <summary>
@@ -201,8 +192,13 @@ public class AudioManager : MonoBehaviour
     // シーンが読み込まれた際に呼ばれる
     private void PlayStackedBgm(Scene thisScene, Scene nextScene)
     {
-        StopBGM();
-        PlayBGM(stackedBgm);
+        // スタックされているときは、シーン遷移後にBGMを変化
+        if (_isStacked)
+        {
+            StopBGM();
+            PlayBGM(stackedBgm);
+            _isStacked = false;
+        }
     }
 
     /// <summary>
@@ -212,6 +208,7 @@ public class AudioManager : MonoBehaviour
     public void StackBgm(BgmEnum bgm)
     {
         stackedBgm = bgm;
+        _isStacked = true;
     }
 
     public void PlayBGM(BgmEnum bgm)

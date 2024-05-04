@@ -6,14 +6,14 @@ using Zenject;
 public class ScorePresenter : IInitializable
 {
     private ScoreManager _scoreManager;
-    private CompositeDisposable _compositeDisposable;
-
-    [SerializeField]
     private ScoreView  _scoreView;
 
-    private ScorePresenter(ScoreManager scoreManager)
+    private CompositeDisposable _compositeDisposable;
+
+    private ScorePresenter(ScoreManager scoreManager, ScoreView scoreView)
     {
         _scoreManager = scoreManager;
+        _scoreView = scoreView;
     }
 
     public void Initialize()

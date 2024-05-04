@@ -1,7 +1,5 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading;
 using UniRx;
 using UnityEngine;
@@ -17,18 +15,11 @@ public class BlinderView : MonoBehaviour
     [SerializeField, Tooltip("ñ⁄âBÇµÇêßå‰Ç∑ÇÈÉ}ÉXÉN")]
     private GameObject _mask;
 
-    RectTransform _maskRect;
+    private RectTransform _maskRect;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         _maskRect = _mask.GetComponent<RectTransform>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     /// <summary>

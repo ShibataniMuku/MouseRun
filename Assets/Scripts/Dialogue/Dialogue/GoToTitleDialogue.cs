@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Zenject;
 
 public class GoToTitleDialogue : Dialogue, IDialogue
 {
+    [Inject]
+    private SceneTransitioner _sceneTransitioner;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -15,6 +16,6 @@ public class GoToTitleDialogue : Dialogue, IDialogue
     /// </summary>
     public void GoToTitle()
     {
-        SceneTransitioner.sceneTransitionerInstance.TransitionNextScene(SceneEnum.Title);
+        _sceneTransitioner.StartTransitionSceneAndBlackOut(SceneEnum.Title);
     }
 }

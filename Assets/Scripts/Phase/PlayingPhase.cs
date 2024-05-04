@@ -1,20 +1,17 @@
 using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UniRx;
-using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
-public class PlayingPhase : MonoBehaviour, IPhase
+public class PlayingPhase : IPhase, IInitializable
 {
     [SerializeField, Header("制限時間")]
-    private const float DEFAULT_TIME = 60;
+    private const float DEFAULT_TIME = 10;
 
-    public static PlayingPhase playingPhaseInstance;
-
-    public Countdown Countdown => _countdown;
-    private Countdown _countdown = new Countdown(new TimeLimit(DEFAULT_TIME));
+    private TimeManager _timeManager;
+    private SceneTransitioner _sceneTransitioner;
+    private InheritorBetweenScenes _inheritorBetweenScenes;
+    private ScoreManager _scoreManager;
 
     // ゲーム開始時に呼ばれる
     public delegate UniTask StartGameDelegate();
@@ -26,21 +23,16 @@ public class PlayingPhase : MonoBehaviour, IPhase
 
     private bool _canExtendGame = false;
 
-    private void Awake()
+    PlayingPhase(TimeManager timeManager, SceneTransitioner sceneTransitioner, InheritorBetweenScenes inheritorBetweenScenes, ScoreManager scoreManager)
     {
-        if (playingPhaseInstance == null)
-        {
-            playingPhaseInstance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        _timeManager = timeManager;
+        _sceneTransitioner = sceneTransitioner;
+        _inheritorBetweenScenes = inheritorBetweenScenes;
+        _scoreManager = scoreManager;
+        _timeManager.MainTimer.SetTimeLimit(new TimeLimit(DEFAULT_TIME));
     }
 
-    // Start is called before the first frame update
-    async void Start()
+    public async void Initialize()
     {
         await OnCompleteTransition();
     }
@@ -50,14 +42,14 @@ public class PlayingPhase : MonoBehaviour, IPhase
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
 
         // ブラックイン
-        await SceneTransitioner.sceneTransitionerInstance.CompleteTransitionScene();
+        await _sceneTransitioner.CompleteTransitionSceneAndBlackIn();
 
-        _countdown.StartCountdown();
+        _timeManager.MainTimer.StartCountdown();
 
         Debug.Log("ゲームスタート！");
         await OnStartGame();
 
-        await UniTask.WaitUntil(() => _countdown.IsCompleteCountdown);
+        await UniTask.WaitUntil(() => _timeManager.MainTimer.IsCompleteCountdown);
 
         Debug.Log("ゲーム終了！");
 
@@ -69,9 +61,9 @@ public class PlayingPhase : MonoBehaviour, IPhase
         {
             // 延長不可能なら、リザルト画面へ遷移
 
-            //InheritorBetweenScenes.inheritorBetweenScenesInstance.SetInheritedData("Score", ScoreManager.scoreManagerInstance.Score.Value.Value);
-            
-            SceneTransitioner.sceneTransitionerInstance.TransitionNextScene(SceneEnum.Result);
+            _inheritorBetweenScenes.SetInheritedData("score", _scoreManager.CurerntScore.Value.Value);
+
+            _sceneTransitioner.StartTransitionSceneAndBlackOut(SceneEnum.Result);
         }
     }
 
@@ -80,6 +72,6 @@ public class PlayingPhase : MonoBehaviour, IPhase
 
     }
 
-    public void SetOnStartGame(StartGameDelegate method){ OnStartGame += method; } // ゲーム開始時のデリゲートに追加
-    public void SetOnFinishGame(FinishGameDelegate method){ OnFinishGame += method; } // ゲーム終了時のデリゲートに追加
+    public void SetOnStartGame(StartGameDelegate method) { OnStartGame += method; } // ゲーム開始時のデリゲートに追加
+    public void SetOnFinishGame(FinishGameDelegate method) { OnFinishGame += method; } // ゲーム終了時のデリゲートに追加
 }
