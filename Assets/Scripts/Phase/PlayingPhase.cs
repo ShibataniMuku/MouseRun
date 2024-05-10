@@ -12,6 +12,7 @@ public class PlayingPhase : IPhase, IInitializable
     private SceneTransitioner _sceneTransitioner;
     private InheritorBetweenScenes _inheritorBetweenScenes;
     private ScoreManager _scoreManager;
+    private AudioManager _audioManager;
 
     // ÉQÅ[ÉÄäJénéûÇ…åƒÇŒÇÍÇÈ
     public delegate UniTask StartGameDelegate();
@@ -23,12 +24,13 @@ public class PlayingPhase : IPhase, IInitializable
 
     private bool _canExtendGame = false;
 
-    PlayingPhase(TimeManager timeManager, SceneTransitioner sceneTransitioner, InheritorBetweenScenes inheritorBetweenScenes, ScoreManager scoreManager)
+    PlayingPhase(TimeManager timeManager, SceneTransitioner sceneTransitioner, InheritorBetweenScenes inheritorBetweenScenes, ScoreManager scoreManager, AudioManager audioManager)
     {
         _timeManager = timeManager;
         _sceneTransitioner = sceneTransitioner;
         _inheritorBetweenScenes = inheritorBetweenScenes;
         _scoreManager = scoreManager;
+        _audioManager = audioManager;
         _timeManager.MainTimer.SetTimeLimit(new TimeLimit(DEFAULT_TIME));
     }
 
@@ -63,6 +65,8 @@ public class PlayingPhase : IPhase, IInitializable
 
             _inheritorBetweenScenes.SetInheritedData("score", _scoreManager.CurerntScore.Value.Value);
 
+            _audioManager.StopBGM(1);
+            _audioManager.StackBgm(BgmEnum.result);
             _sceneTransitioner.StartTransitionSceneAndBlackOut(SceneEnum.Result);
         }
     }

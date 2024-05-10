@@ -9,7 +9,7 @@ public class Pipe : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField, Header("‰ñ“]•ûŒü")]
     private Way way;
-    [SerializeField, Header("‰ñ“]•ûŒü")]
+    [SerializeField, Header("‰ñ“]ƒXƒs[ƒh")]
     private float rotationAnimDuration = 0.4f;
 
     [SerializeField]

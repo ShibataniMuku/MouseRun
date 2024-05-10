@@ -12,7 +12,14 @@ public class InheritorBetweenScenes
 
     public void SetInheritedData(String key, int value)
     {
-        inheritedData.Add(key, value);
+        if (inheritedData.ContainsKey(key))
+        {
+            inheritedData[key] = value;
+        }
+        else
+        {
+            inheritedData.Add(key, value);
+        }
     }
 
     public int GetInheritedData(String key)

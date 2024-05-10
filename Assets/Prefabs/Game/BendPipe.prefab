@@ -230,14 +230,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   way: 0
-  rotationAnimDuration: 0.4
+  rotationAnimDuration: 0.2
   point:
   - {fileID: 1742730189294023217}
   - {fileID: 5944509948557169938}
   - {fileID: 3312211984482034721}
   pipe: {fileID: 8665446381611444592}
-  _directions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}

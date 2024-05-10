@@ -17,4 +17,8 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 69d481ba2f3b4394fa7d2d83ee770ebc, type: 3}
     volume: 0.036
+  - _memo: "\u30C6\u30B9\u30C8"
+    type: 2
+    clip: {fileID: 8300000, guid: 69d481ba2f3b4394fa7d2d83ee770ebc, type: 3}
+    volume: 0.036
   seData: []

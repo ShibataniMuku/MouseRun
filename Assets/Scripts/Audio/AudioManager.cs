@@ -1,8 +1,10 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class AudioManager : MonoBehaviour
 {
@@ -195,7 +197,6 @@ public class AudioManager : MonoBehaviour
         // スタックされているときは、シーン遷移後にBGMを変化
         if (_isStacked)
         {
-            StopBGM();
             PlayBGM(stackedBgm);
             _isStacked = false;
         }
@@ -219,6 +220,18 @@ public class AudioManager : MonoBehaviour
         _bgmAudioSource.Play();
     }
 
+    /// <summary>
+    /// 指定した時間かけてBGMをフェードアウトする
+    /// </summary>
+    /// <param name="fadeTime"></param>
+    public void StopBGM(float fadeTime)
+    {
+        DOTween.To(() => _bgmAudioSource.volume, (x) => 
+        {
+            _bgmAudioSource.volume = x;
+        }, 0, fadeTime)
+            .OnComplete(() => _bgmAudioSource.Stop());
+    }
     public void StopBGM() { _bgmAudioSource.Stop(); }
     public void PauseBGM() { _bgmAudioSource.Pause(); }
     public void UnPauseBGM() { _bgmAudioSource.UnPause(); }

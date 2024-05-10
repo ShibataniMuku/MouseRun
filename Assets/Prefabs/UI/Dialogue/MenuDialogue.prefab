@@ -129,8 +129,6 @@ GameObject:
   - component: {fileID: 1146505183741956669}
   - component: {fileID: 5926543604025096878}
   - component: {fileID: 3587963838706166439}
-  - component: {fileID: 5841400570271678552}
-  - component: {fileID: 8429826125562022936}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -239,32 +237,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5841400570271678552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6268544835522125525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates: []
---- !u!114 &8429826125562022936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6268544835522125525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e8c1dce101cbe944ae68f212af4f0c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _button: {fileID: 3587963838706166439}
 --- !u!1 &7151503356263464534
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,10 +659,6 @@ PrefabInstance:
     - target: {fileID: 2082982471118153949, guid: c35682ae516e7f947a931d606f80745c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2672221001384310792, guid: c35682ae516e7f947a931d606f80745c, type: 3}
-      propertyPath: m_fontSize
-      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8539344174668969198, guid: c35682ae516e7f947a931d606f80745c, type: 3}
       propertyPath: m_Name
