@@ -1,3 +1,6 @@
+using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -32,16 +35,20 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
         // アイテムの配置の初期化
         for(int i = 0; i < _defaultSettingCount; i++)
         {
-            int posX = Random.Range(0, _pipeManager.gridCount.x);
-            int posY = Random.Range(0, _pipeManager.gridCount.y);
-            Grid grid = new Grid(posX, posY);
-            GenerateItem(grid);
+            List<Grid> isNotPlaced = _itemManager.GetItemStatusList();
+
+            int grid =  UnityEngine.Random.Range(0, isNotPlaced.Count);
+            GenerateItem(isNotPlaced[grid]);
         }
     }
 
     public void GenerateItem(Grid grid)
     {
-        // 生成する座標は、ItemManager類を管理するItemManagerで設定！！！！！！！！！！
+        if (_itemManager.GetItemStatus(grid))
+        {
+            Debug.LogError("既にアイテムが配置されている足場に、重複してアイテムを配置しようとしています。");
+            return;
+        }
 
         //アクティブでないオブジェクトをbulletsの中から探索
         foreach (Transform t in _scoreItemParent)
@@ -65,7 +72,23 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
         item.GetComponent<ScoreItem>().Init(this);
 
         // アイテム情報を登録
-        _itemManager.SetItem(new Grid(grid.x, grid.y));
+        _itemManager.SetItemStatus(new Grid(grid.x, grid.y));
+    }
+
+    /// <summary>
+    /// アイテムをランダムに生成する
+    /// </summary>
+    /// <param name="delayTime">何秒後に生成するか</param>
+    public async void GenerateItem(float delayTime)
+    {
+        float time = UnityEngine.Random.Range(delayTime - 3, delayTime + 3);
+
+        List<Grid> isNotPlaced = _itemManager.GetItemStatusList();
+        int grid = UnityEngine.Random.Range(0, isNotPlaced.Count);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(time));
+
+        GenerateItem(isNotPlaced[grid]);
     }
 
     public void PickUpItem(int posX, int posY, Score score)
@@ -74,8 +97,6 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
         // アイテム情報を削除
         _itemManager.RemoveItem(new Grid(posX, posY));
 
-
-        // 次のアイテムを生成する処理 または アイテムが獲られて減ったことを伝える
-
+        GenerateItem(_separateGeneratingItem);
     }
 }

@@ -50,7 +50,7 @@ public class TimeItemManager : MonoBehaviour, IItemManager
         Instantiate(_timeItem, _pipeManager.pipes[grid.x, grid.y].transform.position, Quaternion.identity, _timeItemParent);
 
         // ƒAƒCƒeƒ€î•ñ‚ğ“o˜^
-        _itemManager.SetItem(new Grid(grid.x, grid.y));
+        _itemManager.SetItemStatus(new Grid(grid.x, grid.y));
     }
 
     public void PickUpItem(int posX, int posY, float time)
