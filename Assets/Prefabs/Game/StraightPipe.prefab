@@ -140,7 +140,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5d2baae1d08020b4b848d07c127a9f4e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 50efe2d3e1a4b8c45b552140da7b3915, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -199,17 +199,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   way: 0
-  rotationAnimDuration: 0.4
+  rotationAnimDuration: 0.2
   point:
   - {fileID: 2293205878707090484}
   - {fileID: 941172129362407249}
   - {fileID: 8340651669840012233}
   pipe: {fileID: 4443622993555570547}
-  _directions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &6455723037689258581
 GameObject:
   m_ObjectHideFlags: 0

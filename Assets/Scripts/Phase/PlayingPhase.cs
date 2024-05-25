@@ -1,54 +1,81 @@
 using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
-public class PlayingPhase : MonoBehaviour, IPhase
+public class PlayingPhase : IPhase, IInitializable
 {
     [SerializeField, Header("制限時間")]
     private const float DEFAULT_TIME = 60;
 
-    public Countdown Countdown => _countdown;
-    private Countdown _countdown;
+    private TimeManager _timeManager;
+    private SceneTransitioner _sceneTransitioner;
+    private InheritorBetweenScenes _inheritorBetweenScenes;
+    private ScoreManager _scoreManager;
+    private AudioManager _audioManager;
 
-    // Start is called before the first frame update
-    void Start()
+    // ゲーム開始時に呼ばれる
+    public delegate UniTask StartGameDelegate();
+    public event StartGameDelegate OnStartGame;
+
+    // ゲーム終了時に呼ばれる
+    public delegate UniTask FinishGameDelegate();
+    public event FinishGameDelegate OnFinishGame;
+
+    private bool _canExtendGame = false;
+
+    PlayingPhase(TimeManager timeManager, SceneTransitioner sceneTransitioner, InheritorBetweenScenes inheritorBetweenScenes, ScoreManager scoreManager, AudioManager audioManager)
     {
-        _countdown = new Countdown(new TimeLimit(DEFAULT_TIME));
+        _timeManager = timeManager;
+        _sceneTransitioner = sceneTransitioner;
+        _inheritorBetweenScenes = inheritorBetweenScenes;
+        _scoreManager = scoreManager;
+        _audioManager = audioManager;
+        _timeManager.MainTimer.SetTimeLimit(new TimeLimit(DEFAULT_TIME));
     }
 
-    // Update is called once per frame
-    void Update()
+    public async void Initialize()
     {
-        
+        await OnCompleteTransition();
     }
 
     public async UniTask OnCompleteTransition()
     {
-        PipeManager.InformCanRotateable(false);
-
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
 
         // ブラックイン
-        await SceneTransitioner.sceneTransitionerInstance.CompleteTransitionScene();
+        await _sceneTransitioner.CompleteTransitionSceneAndBlackIn();
 
-        PipeManager.InformCanRotateable(true);
-        GameManager.gameManagerInstance._IsCowntdown = true;
-        _countdown.StartCountdown();
+        _timeManager.MainTimer.StartCountdown();
 
         Debug.Log("ゲームスタート！");
+        await OnStartGame();
 
-        await UniTask.WaitUntil(() => _countdown.IsCompleteCountdown);
+        await UniTask.WaitUntil(() => _timeManager.MainTimer.IsCompleteCountdown);
 
         Debug.Log("ゲーム終了！");
-        PipeManager.InformCanRotateable(false);
-        GameManager.gameManagerInstance._IsCowntdown = false;
+
+        await OnFinishGame();
+
+        await UniTask.Delay(3000);
+
+        if (!_canExtendGame)
+        {
+            // 延長不可能なら、リザルト画面へ遷移
+
+            _inheritorBetweenScenes.SetInheritedData("score", _scoreManager.CurerntScore.Value.Value);
+
+            _audioManager.StopBGM(1);
+            _audioManager.StackBgm(BgmEnum.result);
+            _sceneTransitioner.StartTransitionSceneAndBlackOut(SceneEnum.Result);
+        }
     }
 
     public async UniTask OnStartTransition()
     {
 
     }
+
+    public void SetOnStartGame(StartGameDelegate method) { OnStartGame += method; } // ゲーム開始時のデリゲートに追加
+    public void SetOnFinishGame(FinishGameDelegate method) { OnFinishGame += method; } // ゲーム終了時のデリゲートに追加
 }

@@ -7,7 +7,7 @@ using UniRx;
 public class RetryDialoguePresenter : DialoguePresenter
 {
     [SerializeField, Tooltip("リトライボタン")]
-    private Button _retryButtonVIew;
+    private TransitionToMainButtonView _transitionToMainButton;
     [SerializeField, Tooltip("背景ボタンを含む、リトライ用のダイアログ")]
     private RetryDialogue _retryDialogueModel;
 
@@ -19,7 +19,7 @@ public class RetryDialoguePresenter : DialoguePresenter
         SetDialogue(_retryDialogueModel);
 
         // リトライボタンが押されたことをModel側に通知
-        _retryButtonVIew.OnClickAsObservable()
+        _transitionToMainButton.buttonSubject
                 .Subscribe(x =>
                 {
                     _retryDialogueModel.Retry();

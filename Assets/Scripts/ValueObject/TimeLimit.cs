@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeLimit : MonoBehaviour
+public class TimeLimit
 {
     public float _time;
     public float Value { get { return _time; } }

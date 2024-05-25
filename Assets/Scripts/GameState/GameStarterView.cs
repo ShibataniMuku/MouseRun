@@ -1,10 +1,7 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading;
 using TMPro;
-using UniRx;
 using UnityEngine;
 
 public class GameStarterView : MonoBehaviour
@@ -14,10 +11,15 @@ public class GameStarterView : MonoBehaviour
     [SerializeField, Tooltip("GO!のテキスト")]
     private GameObject goText;
 
+    [SerializeField, Tooltip("FINISH!のテキスト")]
+    private GameObject finishText;
+
     private RectTransform readyRectTrans;
     private TextMeshProUGUI readyTmp;
     private RectTransform goRectTrans;
     private TextMeshProUGUI goTmp;
+    private RectTransform finishRectTrans;
+    private TextMeshProUGUI finishTmp;
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +28,20 @@ public class GameStarterView : MonoBehaviour
         readyTmp = readyText.GetComponent<TextMeshProUGUI>();
         goRectTrans = goText.GetComponent<RectTransform>();
         goTmp = goText.GetComponent<TextMeshProUGUI>();
+        finishRectTrans = finishText.GetComponent<RectTransform>();
+        finishTmp = finishText.GetComponent<TextMeshProUGUI>();
 
         readyTmp.alpha = 0;
         goTmp.alpha = 0;
         readyRectTrans.localScale = Vector3.one * 2;
     }
 
-    public async UniTask Countdown(CancellationToken token)
+    /// <summary>
+    /// ゲーム開始時のアニメーション（READY...→ GO!）
+    /// </summary>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    public async UniTask StartGameAnimation(CancellationToken token)
     {
         var sequence = DOTween.Sequence()
             .Append(readyTmp.DOFade(1, 0.3f).SetUpdate(true))
@@ -47,5 +56,15 @@ public class GameStarterView : MonoBehaviour
             .Join(goTmp.DOFade(0, 0.3f));
 
         await UniTask.Delay((int)(sequence.Duration() * 1000)); // Sequenceの再生時間をミリ秒に変換して待つ
+    }
+
+    /// <summary>
+    /// ゲーム終了時のアニメーション（FINISH!）
+    /// </summary>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    public async UniTask FinishGameAnimation(CancellationToken token)
+    {
+        finishText.SetActive(true);
     }
 }

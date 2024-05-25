@@ -1,8 +1,10 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class AudioManager : MonoBehaviour
 {
@@ -15,21 +17,12 @@ public class AudioManager : MonoBehaviour
 
     private AudioData _audioData;
     private BgmEnum stackedBgm;
+    private bool _isStacked = false; // BGMがスタックされているか否か
 
-    public static AudioManager audioManagerInstance;
+    //public static AudioManager audioManagerInstance;
 
     private void Awake()
     {
-        if (audioManagerInstance == null)
-        {
-            audioManagerInstance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         _audioData = GetAudioData();
     }
 
@@ -42,7 +35,7 @@ public class AudioManager : MonoBehaviour
         SceneManager.activeSceneChanged += PlayStackedBgm;
 
         // ================ ↓ とりあえずBGMをテストで流している ==============================
-        AudioManager.audioManagerInstance.PlayBGM(BgmEnum.title);
+       PlayBGM(BgmEnum.title);
     }
 
     /// <summary>
@@ -201,8 +194,12 @@ public class AudioManager : MonoBehaviour
     // シーンが読み込まれた際に呼ばれる
     private void PlayStackedBgm(Scene thisScene, Scene nextScene)
     {
-        StopBGM();
-        PlayBGM(stackedBgm);
+        // スタックされているときは、シーン遷移後にBGMを変化
+        if (_isStacked)
+        {
+            PlayBGM(stackedBgm);
+            _isStacked = false;
+        }
     }
 
     /// <summary>
@@ -212,6 +209,7 @@ public class AudioManager : MonoBehaviour
     public void StackBgm(BgmEnum bgm)
     {
         stackedBgm = bgm;
+        _isStacked = true;
     }
 
     public void PlayBGM(BgmEnum bgm)
@@ -222,6 +220,18 @@ public class AudioManager : MonoBehaviour
         _bgmAudioSource.Play();
     }
 
+    /// <summary>
+    /// 指定した時間かけてBGMをフェードアウトする
+    /// </summary>
+    /// <param name="fadeTime"></param>
+    public void StopBGM(float fadeTime)
+    {
+        DOTween.To(() => _bgmAudioSource.volume, (x) => 
+        {
+            _bgmAudioSource.volume = x;
+        }, 0, fadeTime)
+            .OnComplete(() => _bgmAudioSource.Stop());
+    }
     public void StopBGM() { _bgmAudioSource.Stop(); }
     public void PauseBGM() { _bgmAudioSource.Pause(); }
     public void UnPauseBGM() { _bgmAudioSource.UnPause(); }

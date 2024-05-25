@@ -15,5 +15,5 @@ MonoBehaviour:
   _dialogueAnimDuration: 0.2
   _dialogueRetreatDuration: 0.6
   _dialogueRetreatDistance: 50
-  _backgroundAlpha: 0.5
+  _backgroundAlpha: 0.1
   _backgroundAnimDuration: 0.4

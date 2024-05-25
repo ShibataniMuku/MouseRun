@@ -9,7 +9,7 @@ public class Pipe : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField, Header("‰ñ“]•ûŒü")]
     private Way way;
-    [SerializeField, Header("‰ñ“]•ûŒü")]
+    [SerializeField, Header("‰ñ“]ƒXƒs[ƒh")]
     private float rotationAnimDuration = 0.4f;
 
     [SerializeField]
@@ -201,6 +201,6 @@ public class Pipe : MonoBehaviour, IPointerClickHandler
     public void SetCanRotational(bool canRotational)
     {
         this.canRotational = canRotational;
-        Debug.Log(this.canRotational);
+        Debug.Log("‰ñ“]‰Â”\‚©”Û‚©F" + this.canRotational);
     }
 }

@@ -9,6 +9,7 @@ public class DialogueManagerPresenter : MonoBehaviour
     private List<Dialogue> _dialogueView = new List<Dialogue>();
     [SerializeField, Tooltip("ダイアログの開閉状況を管理するDialogueManager")]
     private DialogueManager _dialogueModel;
+
     // Start is called before the first frame update
     void Start()
     {

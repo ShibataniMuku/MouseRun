@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+using Zenject;
 
 public class RetryDialogue : Dialogue, IDialogue
 {
+    [Inject]
+    private SceneTransitioner _sceneTransitioner;
+    [Inject]
+    private AudioManager _audioManager;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -16,7 +18,7 @@ public class RetryDialogue : Dialogue, IDialogue
     /// </summary>
     public void Retry()
     {
-        AudioManager.audioManagerInstance.StackBgm(BgmEnum.title);
-        SceneTransitioner.sceneTransitionerInstance.TransitionNextScene(SceneEnum.Main);
+        _audioManager.StackBgm(BgmEnum.title);
+        _sceneTransitioner.StartTransitionSceneAndBlackOut(SceneEnum.Main);
     }
 }

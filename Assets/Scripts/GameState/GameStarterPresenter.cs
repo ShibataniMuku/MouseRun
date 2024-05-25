@@ -1,26 +1,39 @@
 using Cysharp.Threading.Tasks;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading;
-using UniRx;
-using UnityEngine;
+using Zenject;
 
-public class GameStarterPresenter : MonoBehaviour
+public class GameStarterPresenter: IInitializable
 {
-    [SerializeField]
-    private GameStarterView gameStarterView;
+    private PlayingPhase _playingPhase;
+    private GameStarterView _gameStarterView;
+    private SceneTransitioner _sceneTransitioner;
 
-    // Start is called before the first frame update
-    void Start()
+    GameStarterPresenter(PlayingPhase playingPhase, GameStarterView gameStarterView, SceneTransitioner sceneTransitioner)
     {
-        SceneTransitioner.sceneTransitionerInstance.OnCompleteBlackIn += ShowGameViewEventHandler;
+        _playingPhase = playingPhase;
+        _gameStarterView = gameStarterView;
+        _sceneTransitioner = sceneTransitioner;
     }
 
-    private async UniTask ShowGameViewEventHandler()
+    public void Initialize()
+    {
+        _sceneTransitioner.OnCompleteBlackIn += StartGameAnimationHandler;
+        _playingPhase.OnFinishGame += FinishGameAnimationHandler;
+    }
+
+    private async UniTask StartGameAnimationHandler()
     {
         var cts = new CancellationTokenSource();
         var token = cts.Token;
 
-        await gameStarterView.Countdown(token);
+        await _gameStarterView.StartGameAnimation(token);
+    }
+
+    private async UniTask FinishGameAnimationHandler()
+    {
+        var cts = new CancellationTokenSource();
+        var token = cts.Token;
+
+        await _gameStarterView.FinishGameAnimation(token);
     }
 }
