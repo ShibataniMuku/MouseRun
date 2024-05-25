@@ -13,6 +13,8 @@ public class DialogueData : ScriptableObject
     public float _dialogueRetreatDistance = 100;
     [SerializeField, Range(0, 1), Header("”wŒi‚Ì–Ú‰B‚µ‚Ì“§–¾“x")]
     public float _backgroundAlpha = 0.5f;
+    [SerializeField, Range(0, 100), Header("”wŒi‚Ìƒuƒ‰[‹­“x")]
+    public float _backgroundBlur = 30;
     [SerializeField, Range(0, 1), Header("”wŒi‚Ì–Ú‰B‚µ‚ÌoŒ»ŠÔ")]
     public float _backgroundAnimDuration = 0.4f;
 }

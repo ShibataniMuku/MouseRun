@@ -1,6 +1,5 @@
 using Cysharp.Threading.Tasks;
 using System;
-using UnityEngine;
 using Zenject;
 
 public class ResultPhase : IPhase, IInitializable

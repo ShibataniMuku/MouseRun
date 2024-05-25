@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42163f2493a8a744b79bef89e9b8a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _separateGeneratingItem: 0
+  _separateGeneratingItem: 3
   _defaultSettingCount: 8
   _scoreItem: {fileID: 1795021525122217157, guid: f1494c95dbc44544a9e0461e68fce04e, type: 3}
   _scoreItemParent: {fileID: 6896976385226394634}

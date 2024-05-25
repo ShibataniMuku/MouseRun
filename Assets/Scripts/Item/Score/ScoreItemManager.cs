@@ -81,7 +81,7 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
     /// <param name="delayTime">âΩïbå„Ç…ê∂ê¨Ç∑ÇÈÇ©</param>
     public async void GenerateItem(float delayTime)
     {
-        float time = UnityEngine.Random.Range(delayTime - 3, delayTime + 3);
+        float time = UnityEngine.Random.Range(delayTime * 0.5f, delayTime * 1.5f);
 
         List<Grid> isNotPlaced = _itemManager.GetItemStatusList();
         int grid = UnityEngine.Random.Range(0, isNotPlaced.Count);
