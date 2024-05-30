@@ -1,9 +1,9 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 
 public class TimeView : MonoBehaviour
 {
-    [SerializeField, Header("Žc‚èŽžŠÔ‚ð•\Ž¦‚·‚éƒeƒLƒXƒg")]
+    [SerializeField, Header("?c?????????????????????e?L?X?g")]
     private GameObject _timeText;
 
     TextMeshProUGUI _timeTmp;

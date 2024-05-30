@@ -1,13 +1,13 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BackgroundView : MonoBehaviour
 {
-    [SerializeField, Tooltip("ƒ_ƒCƒAƒƒO‚Ì”wŒi‚É‚ ‚éF’…‚¯—p‚Ì–Ú‰B‚µ")]
+    [SerializeField, Tooltip("ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®èƒŒæ™¯ã«ã‚ã‚‹è‰²ç€ã‘ç”¨ã®ç›®éš ã—")]
     private GameObject _backgroundColor;
-    [SerializeField, Tooltip("ƒ_ƒCƒAƒƒO‚Ì”wŒi‚É‚ ‚éƒuƒ‰[—p‚Ì–Ú‰B‚µ")]
+    [SerializeField, Tooltip("ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®èƒŒæ™¯ã«ã‚ã‚‹ãƒ–ãƒ©ãƒ¼ç”¨ã®ç›®éš ã—")]
     private GameObject _backgroundBlur;
 
     private Image _backGroundColorImage;
@@ -24,18 +24,18 @@ public class BackgroundView : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ_ƒCƒAƒƒO”wŒi‚Ì–Ú‰B‚µ‚ğ•\¦‚·‚é
+    /// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°èƒŒæ™¯ã®ç›®éš ã—ã‚’è¡¨ç¤ºã™ã‚‹
     /// </summary>
-    /// <param name="isShow">•\¦‚·‚é‚©”Û‚©</param>
+    /// <param name="isShow">è¡¨ç¤ºã™ã‚‹ã‹å¦ã‹</param>
     public void ShowBackground(bool isClosingAllDialogue)
     {
         if (isClosingAllDialogue)
         {
-            // ƒ_ƒCƒAƒƒO‚Ì”wŒiF‚ğ•Ï‰»
+            // ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®èƒŒæ™¯è‰²ã‚’å¤‰åŒ–
             _backGroundColorImage.DOFade(GetDialogueData()._backgroundAlpha, GetDialogueData()._backgroundAnimDuration)
                 .SetUpdate(true);
 
-            // ƒ_ƒCƒAƒƒO‚Ì”wŒi‚Ìƒuƒ‰[‹­“x‚ğ•Ï‰»
+            // ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®èƒŒæ™¯ã®ãƒ–ãƒ©ãƒ¼å¼·åº¦ã‚’å¤‰åŒ–
             _backGroundBlurImage.material.SetFloat("_Blur", GetDialogueData()._backgroundBlur);
         }
         else
@@ -43,15 +43,15 @@ public class BackgroundView : MonoBehaviour
             _backGroundColorImage.DOFade(0, GetDialogueData()._backgroundAnimDuration)
                 .SetUpdate(true);
 
-            // ƒ_ƒCƒAƒƒO‚Ì”wŒi‚Ìƒuƒ‰[‹­“x‚ğ•Ï‰»
+            // ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®èƒŒæ™¯ã®ãƒ–ãƒ©ãƒ¼å¼·åº¦ã‚’å¤‰åŒ–
             _backGroundBlurImage.material.SetFloat("_Blur", 0);
         }
     }
 
     /// <summary>
-    /// ƒ_ƒCƒAƒƒO‚Ìİ’è‚ğ“Ç‚İ‚Ş
+    /// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®è¨­å®šã‚’èª­ã¿è¾¼ã‚€
     /// </summary>
-    /// <returns>İ’èƒf[ƒ^</returns>
+    /// <returns>è¨­å®šãƒ‡ãƒ¼ã‚¿</returns>
     private DialogueData GetDialogueData()
     {
         string path = "DialogueData";

@@ -1,4 +1,4 @@
-using UniRx;
+﻿using UniRx;
 
 public class ScoreManager
 {

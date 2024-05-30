@@ -1,27 +1,27 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine.SceneManagement;
 
 public class SceneTransitioner
 {
-    // ƒuƒ‰ƒbƒNƒCƒ“ŠJn‚ÉŒÄ‚Î‚ê‚é
+    // ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³é–‹å§‹æ™‚ã«å‘¼ã°ã‚Œã‚‹
     public delegate UniTask StartBlackInDelegate();
     public event StartBlackInDelegate OnStartBlackIn;
 
-    // ƒuƒ‰ƒbƒNƒCƒ“Š®—¹‚ÉŒÄ‚Î‚ê‚é
+    // ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³å®Œäº†æ™‚ã«å‘¼ã°ã‚Œã‚‹
     public delegate UniTask CompleteBlackInDelegate();
     public event CompleteBlackInDelegate OnCompleteBlackIn;
 
-    // ƒuƒ‰ƒbƒNƒAƒEƒgŠJn‚ÉŒÄ‚Î‚ê‚é
+    // ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆé–‹å§‹æ™‚ã«å‘¼ã°ã‚Œã‚‹
     public delegate UniTask StartBlackOutDelegate();
     public event StartBlackOutDelegate OnStartBlackOut;
 
-    // ƒuƒ‰ƒbƒNƒAƒEƒgŠ®—¹‚ÉŒÄ‚Î‚ê‚é
+    // ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆå®Œäº†æ™‚ã«å‘¼ã°ã‚Œã‚‹
     public delegate UniTask CompleteBlackOutDelegate();
     public event CompleteBlackOutDelegate OnCompleteBlackOut;
 
     /// <summary>
-    /// ƒuƒ‰ƒbƒNƒCƒ“‚³‚¹‚ÄAƒV[ƒ“‘JˆÚ‚ğŠ®—¹‚·‚é
+    /// ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ã•ã›ã¦ã€ã‚·ãƒ¼ãƒ³é·ç§»ã‚’å®Œäº†ã™ã‚‹
     /// </summary>
     public async UniTask CompleteTransitionSceneAndBlackIn()
     {
@@ -31,13 +31,13 @@ public class SceneTransitioner
     }
 
     /// <summary>
-    /// ƒuƒ‰ƒbƒNƒAƒEƒg‚³‚¹‚ÄAƒV[ƒ“‚ğ‘JˆÚ‚·‚é
+    /// ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆã•ã›ã¦ã€ã‚·ãƒ¼ãƒ³ã‚’é·ç§»ã™ã‚‹
     /// </summary>
-    /// <param name="scene">‘JˆÚæƒV[ƒ“</param>
+    /// <param name="scene">é·ç§»å…ˆã‚·ãƒ¼ãƒ³</param>
     public async UniTask StartTransitionSceneAndBlackOut(SceneEnum scene)
     {
         await UniTask.WhenAll(OnStartBlackOut());
-        //await UniTask.WhenAll(OnCompleteBlackOut()); // g‚Á‚Ä‚¢‚È‚¢
+        //await UniTask.WhenAll(OnCompleteBlackOut()); // ä½¿ã£ã¦ã„ãªã„
         SceneManager.LoadScene(scene.ToString());
     }
 }

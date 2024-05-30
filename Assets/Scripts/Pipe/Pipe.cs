@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +7,9 @@ using UnityEngine.UI;
 
 public class Pipe : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField, Header("‰ñ“]•ûŒü")]
+    [SerializeField, Header("???]????")]
     private Way way;
-    [SerializeField, Header("‰ñ“]ƒXƒs[ƒh")]
+    [SerializeField, Header("???]?X?s?[?h")]
     private float rotationAnimDuration = 0.4f;
 
     [SerializeField]
@@ -17,10 +17,10 @@ public class Pipe : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private GameObject pipe;
 
-    protected Transform[] _directions = new Transform[4]; // ƒpƒCƒv‚Ì•ûŒüi0:ãA1:‰EA2:‰ºA3:¶j
-    private bool isRotational = false; // Œ»İ‰ñ“]‚µ‚Ä‚¢‚é‚©”Û‚©
-    private bool isOnCharacter = false; // Œ»İƒpƒCƒv‚Ìã‚ÉƒLƒƒƒ‰‚ª‚¢‚é‚ª”Û‚©
-    private bool canRotational = false; // ‰ñ“]‚³‚¹‚é‚±‚Æ‚ª‚Å‚«‚é‚©”Û‚©
+    protected Transform[] _directions = new Transform[4]; // ?p?C?v???????i0:???A1:?E?A2:???A3:???j
+    private bool isRotational = false; // ???????]??????????????
+    private bool isOnCharacter = false; // ?????p?C?v???????L????????????????
+    private bool canRotational = false; // ???]????????????????????????
 
     private void Awake()
     {
@@ -40,13 +40,13 @@ public class Pipe : MonoBehaviour, IPointerClickHandler
     }
 
     /// <summary>
-    /// Ÿ‚É‚±‚ÌƒpƒCƒv‚É“n‚é‚±‚Æ‚ª‚Å‚«‚é‚©”Û‚©‚ğ’²¸‚µA‰Â”\‚Å‚ ‚ê‚ÎƒpƒX‚Éƒ|ƒCƒ“ƒg‚ğ’Ç‰Á
+    /// ?????????p?C?v???n?????????????????????????????A???\?????????p?X???|?C???g??????
     /// </summary>
-    /// <param name="path">ˆÚ“®Œo˜H‚ÌƒpƒX</param>
-    /// <param name="travelDirection">‚±‚ÌƒpƒCƒv‚ÉN“ü‚µ‚Ä‚­‚é•ûŒü</param>
+    /// <param name="path">?????o?H???p?X</param>
+    /// <param name="travelDirection">?????p?C?v???N??????????????</param>
     public bool ResetPathPoint(List<Transform> path, TravelDirection travelDirection)
     {
-        // “¹‚ªŒq‚ª‚Á‚Ä‚¢‚éA‚©‚Â‰ñ“]’†‚Å‚È‚¯‚ê‚ÎŒo˜H‚ğXV
+        // ?????q???????????A???????]?????????????o?H???X?V
         if (_directions[(int)travelDirection] != null && !isRotational)
         {
             path.Clear();
@@ -62,10 +62,10 @@ public class Pipe : MonoBehaviour, IPointerClickHandler
     }
 
     /// <summary>
-    /// •Ğ•û‚©‚çN“ü‚µ‚½Û‚ÉA‚à‚¤•Ğ•û‚Í‚Ç‚Ì•ûŒü‚©‚ğ•Ô‚·
+    /// ?????????N???????????A??????????????????????????
     /// </summary>
-    /// <param name="pos">ƒ}ƒXÀ•W</param>
-    /// <param name="travelDirection">“üŒû‚Ì•ûŒü</param>
+    /// <param name="pos">?}?X???W</param>
+    /// <param name="travelDirection">??????????</param>
     public TravelDirection GetExitPoint(Vector2Int pos, TravelDirection enterDirection)
     {
         TravelDirection exit = (TravelDirection)(-1);
@@ -82,24 +82,24 @@ public class Pipe : MonoBehaviour, IPointerClickHandler
     }
 
     /// <summary>
-    /// ƒpƒCƒv‚ªƒNƒŠƒbƒN‚³‚ê‚½Û‚ÉŒÄ‚Î‚ê‚é
+    /// ?p?C?v???N???b?N??????????????????
     /// </summary>
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         if (isRotational)
         {
-            Debug.Log("‰ñ“]’†‚Í‰ñ“]‚Å‚«‚Ü‚¹‚ñ");
+            Debug.Log("???]???????]??????????");
             return;
         }
         if (isOnCharacter)
         {
-            Debug.Log("ƒLƒƒƒ‰ƒNƒ^[‚ªæ‚Á‚Ä‚¢‚é‚Æ‚«‚Í‰ñ“]‚Å‚«‚Ü‚¹‚ñ");
+            Debug.Log("?L?????N?^?[?????????????????????]??????????");
             return;
         }
         if (!canRotational)
         {
-            Debug.Log("Œ»İA‰ñ“]‚³‚¹‚é‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñ");
+            Debug.Log("?????A???]??????????????????????");
             return;
         }
 
@@ -107,19 +107,19 @@ public class Pipe : MonoBehaviour, IPointerClickHandler
     }
 
     /// <summary>
-    /// ƒLƒƒƒ‰‚ªæ‚Á‚Ä‚¢‚é‚©”Û‚©‚ğİ’è
+    /// ?L????????????????????????????
     /// </summary>
-    /// <param name="isOn">true:æ‚Á‚Ä‚¢‚é, false;æ‚Á‚Ä‚¢‚È‚¢</param>
+    /// <param name="isOn">true:??????????, false;????????????</param>
     public void SetIsOnCharacter(bool isOn)
     {
         isOnCharacter = isOn;
     }
 
     /// <summary>
-    /// ƒpƒCƒv‚ğ‰ñ“]‚³‚¹‚é
+    /// ?p?C?v?????]??????
     /// </summary>
-    /// <param name="way">‰ñ“]‚Ì•ûŒü</param>
-    /// <param name="isRandom">ƒ‰ƒ“ƒ_ƒ€‚É‰ñ“]‚³‚¹‚é‚©”Û‚©itrue‚Ìê‡AƒAƒjƒ[ƒVƒ‡ƒ“‚È‚µj</param>
+    /// <param name="way">???]??????</param>
+    /// <param name="isRandom">?????_???????]?????????????itrue???????A?A?j???[?V?????????j</param>
     public void RotatePipe(Way way, bool isRandom)
     {
         int loopCount = 1;
@@ -139,14 +139,14 @@ public class Pipe : MonoBehaviour, IPointerClickHandler
 
                 if (!isRandom)
                 {
-                    // ƒAƒjƒ[ƒVƒ‡ƒ“‚ ‚è
+                    // ?A?j???[?V????????
                     pipe.transform.DORotate(new Vector3(0, 0, -90), rotationAnimDuration)
                         .SetRelative(true)
                         .OnComplete(() => isRotational = false);
                 }
                 else
                 {
-                    // ƒAƒjƒ[ƒVƒ‡ƒ“‚È‚µ
+                    // ?A?j???[?V????????
                     pipe.transform.Rotate(new Vector3(0, 0, -90));
                     isRotational = false;
                 }
@@ -162,14 +162,14 @@ public class Pipe : MonoBehaviour, IPointerClickHandler
 
                 if (!isRandom)
                 {
-                    // ƒAƒjƒ[ƒVƒ‡ƒ“‚ ‚è
+                    // ?A?j???[?V????????
                     pipe.transform.DORotate(new Vector3(0, 0, 90), rotationAnimDuration)
                         .SetRelative(true)
                         .OnComplete(() => isRotational = false);
                 }
                 else
                 {
-                    // ƒAƒjƒ[ƒVƒ‡ƒ“‚È‚µ
+                    // ?A?j???[?V????????
                     pipe.transform.Rotate(new Vector3(0, 0, 90));
                     isRotational = false;
                 }
@@ -191,7 +191,7 @@ public class Pipe : MonoBehaviour, IPointerClickHandler
     }
 
     /// <summary>
-    /// ƒpƒCƒv‚ÌŒü‚«‚ğ‰Šú‰»‚·‚é
+    /// ?p?C?v??????????????????
     /// </summary>
     public virtual void InitializePipeDirections()
     {
@@ -201,6 +201,6 @@ public class Pipe : MonoBehaviour, IPointerClickHandler
     public void SetCanRotational(bool canRotational)
     {
         this.canRotational = canRotational;
-        Debug.Log("‰ñ“]‰Â”\‚©”Û‚©F" + this.canRotational);
+        Debug.Log("???]???****???????F" + this.canRotational);
     }
 }

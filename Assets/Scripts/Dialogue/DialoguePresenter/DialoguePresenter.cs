@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
@@ -7,13 +7,13 @@ using UnityEngine.UI;
 [System.Serializable]
 public class DialoguePresenter : MonoBehaviour
 {
-    [SerializeField, Header("ƒƒ‚"), Tooltip("ƒƒ‚‚ÍŽÀs‚É–³ŠÖŒW‚Å‚·")]
+    [SerializeField, Header("ãƒ¡ãƒ¢"), Tooltip("ãƒ¡ãƒ¢ã¯å®Ÿè¡Œã«ç„¡é–¢ä¿‚ã§ã™")]
     private string _memo;
     [Space(5)]
 
-    [SerializeField, Tooltip("ƒ_ƒCƒAƒƒO‚ðŠJ‚­ƒ{ƒ^ƒ“")]
+    [SerializeField, Tooltip("ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ããƒœã‚¿ãƒ³")]
     private Button _openingButtonView;
-    [SerializeField, Tooltip("ƒ_ƒCƒAƒƒO‚ð•Â‚¶‚éƒ{ƒ^ƒ“")]
+    [SerializeField, Tooltip("ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³")]
     private Button _closingButtonView;
 
     private IDialogue _dialogueModel;
@@ -21,7 +21,7 @@ public class DialoguePresenter : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        // ŠJ‚­ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚±‚Æ‚ðModel‘¤‚É’Ê’m
+        // é–‹ããƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã“ã¨ã‚’Modelå´ã«é€šçŸ¥
         _openingButtonView.OnClickAsObservable()
             .Subscribe(x =>
             {
@@ -29,7 +29,7 @@ public class DialoguePresenter : MonoBehaviour
             })
             .AddTo(this);
 
-        // •Â‚¶‚éƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚±‚Æ‚ðModel‘¤‚É’Ê’m
+        // é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã“ã¨ã‚’Modelå´ã«é€šçŸ¥
         _closingButtonView.OnClickAsObservable()
             .Subscribe(x =>
             {

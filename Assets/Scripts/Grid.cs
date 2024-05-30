@@ -1,4 +1,4 @@
-[System.Serializable]
+﻿[System.Serializable]
 public class Grid
 {
     private readonly int _x = 0;

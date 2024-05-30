@@ -1,18 +1,18 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using UniRx;
 using UnityEngine;
 
 public class Dialogue : MonoBehaviour
 {
-    [SerializeField, Tooltip("”wŒiƒ{ƒ^ƒ“‚ğœ‚­Aƒ_ƒCƒAƒƒO–{‘Ì")]
+    [SerializeField, Tooltip("èƒŒæ™¯ãƒœã‚¿ãƒ³ã‚’é™¤ãã€ãƒ€ã‚¤ã‚¢ãƒ­ã‚°æœ¬ä½“")]
     private GameObject _dialoguePanel;
-    [SerializeField, Tooltip("”wŒi‚ÌƒoƒbƒNƒ{ƒ^ƒ“")]
+    [SerializeField, Tooltip("èƒŒæ™¯ã®ãƒãƒƒã‚¯ãƒœã‚¿ãƒ³")]
     private GameObject _backButton;
 
     private float _defaultScale;
     private RectTransform _dialogueRect;
     private Canvas _dialogueCanvas;
-    private int _myLayer = 0; // ‚±‚Ìƒ_ƒCƒAƒƒO‚ª‰½ŠK‘w–Ú‚ÉˆÊ’u‚µ‚Ä‚¢‚é‚©
+    private int _myLayer = 0; // ã“ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒä½•éšå±¤ç›®ã«ä½ç½®ã—ã¦ã„ã‚‹ã‹
 
     public IReadOnlyReactiveProperty<bool> IsOpen => _isOpen;
     private readonly BoolReactiveProperty _isOpen = new BoolReactiveProperty(false);
@@ -20,7 +20,7 @@ public class Dialogue : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        // ƒ_ƒCƒAƒƒO‚ÌŒ³X‚Ì‘å‚«‚³‚ğ•Û‘¶
+        // ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®å…ƒã€…ã®å¤§ãã•ã‚’ä¿å­˜
         _dialogueRect = _dialoguePanel.GetComponent<RectTransform>();
         _dialogueCanvas = _dialoguePanel.GetComponent<Canvas>();
         _defaultScale = _dialogueRect.localScale.x;
@@ -30,13 +30,13 @@ public class Dialogue : MonoBehaviour
 
     public void OpenDialogue()
     {
-        Debug.Log("ƒ_ƒCƒAƒƒO‚ğŠJ‚«‚Ü‚·");
+        Debug.Log("ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ãã¾ã™");
         _isOpen.SetValueAndForceNotify(true);
         _dialogueCanvas.enabled = true;
         _backButton.SetActive(true);
         _dialogueRect.localScale = Vector2.one * 10;
 
-        // ƒ_ƒCƒAƒƒO‚ğŠJ‚­ƒAƒjƒ[ƒVƒ‡ƒ“
+        // ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ãã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
         _dialogueRect.DOScale(_defaultScale, GetDialogueData()._dialogueAnimDuration)
             .SetUpdate(true);
         _dialoguePanel.GetComponent<CanvasGroup>().DOFade(1, GetDialogueData()._dialogueAnimDuration)
@@ -45,11 +45,11 @@ public class Dialogue : MonoBehaviour
 
     public void CloseDialogue()
     {
-        Debug.Log("ƒ_ƒCƒAƒƒO‚ğ•Â‚¶‚Ü‚·");
+        Debug.Log("ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‰ã˜ã¾ã™");
         _isOpen.SetValueAndForceNotify(false);
         _backButton.SetActive(false);
 
-        // ƒ_ƒCƒAƒƒO‚ğ•Â‚¶‚éƒAƒjƒ[ƒVƒ‡ƒ“
+        // ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‰ã˜ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
         _dialogueRect.DOScale(10, GetDialogueData()._dialogueAnimDuration)
             .SetUpdate(true);
         _dialoguePanel.GetComponent<CanvasGroup>().DOFade(0, GetDialogueData()._dialogueAnimDuration)
@@ -58,12 +58,12 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// ŠK‘w”‚É‰‚¶‚Äƒ_ƒCƒAƒƒO‚ğƒAƒjƒ[ƒVƒ‡ƒ“
+    /// éšå±¤æ•°ã«å¿œã˜ã¦ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
     /// </summary>
-    /// <param name="isOpen">•Â‚¶‚ç‚ê‚½‚©ŠJ‚©‚ê‚½‚©</param>
+    /// <param name="isOpen">é–‰ã˜ã‚‰ã‚ŒãŸã‹é–‹ã‹ã‚ŒãŸã‹</param>
     public void ControllDialogueLayer(bool isOpen)
     {
-        // ========‚±‚Ì‰º‚ÌƒR[ƒh‚ª‰˜‚¢‚Ì‚ÅA®—‚µ‚½‚¢==========
+        // ========ã“ã®ä¸‹ã®ã‚³ãƒ¼ãƒ‰ãŒæ±šã„ã®ã§ã€æ•´ç†ã—ãŸã„==========
 
         if (isOpen && _isOpen.Value)
         {
@@ -78,9 +78,9 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ_ƒCƒAƒƒO‚ğŠK‘w”‚É‰‚¶‚Ä•ÏŒ`‚·‚é
+    /// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’éšå±¤æ•°ã«å¿œã˜ã¦å¤‰å½¢ã™ã‚‹
     /// </summary>
-    /// <param name="layer">ˆÊ’u‚µ‚Ä‚¢‚éŠK‘w</param>
+    /// <param name="layer">ä½ç½®ã—ã¦ã„ã‚‹éšå±¤</param>
     private void TransformDialogue(int layer)
     {
         _dialogueRect.DOScale( _defaultScale - 0.1f * (layer - 1), GetDialogueData()._dialogueRetreatDuration)
@@ -96,11 +96,11 @@ public class Dialogue : MonoBehaviour
             .SetUpdate(true)
             .OnComplete(() => _dialogueRect.pivot = new Vector2(0.5f, 1));
 
-        Debug.Log("¡A" + layer + " ŠK‘w–Ú");
+        Debug.Log("ä»Šã€" + layer + " éšå±¤ç›®");
     }
 
     /// <summary>
-    /// ƒ_ƒCƒAƒƒO‚ğ‰Šú‰»
+    /// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’åˆæœŸåŒ–
     /// </summary>
     private void InitDialogue()
     {
@@ -111,9 +111,9 @@ public class Dialogue : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ_ƒCƒAƒƒO‚Ìİ’è‚ğ“Ç‚İ‚Ş
+    /// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®è¨­å®šã‚’èª­ã¿è¾¼ã‚€
     /// </summary>
-    /// <returns>İ’èƒf[ƒ^</returns>
+    /// <returns>è¨­å®šãƒ‡ãƒ¼ã‚¿</returns>
     private DialogueData GetDialogueData()
     {
         string path = "DialogueData";

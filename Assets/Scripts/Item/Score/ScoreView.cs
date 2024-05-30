@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ public class ScoreView : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒXƒRƒA•\¦‚ğXV‚·‚é
+    /// ã‚¹ã‚³ã‚¢è¡¨ç¤ºã‚’æ›´æ–°ã™ã‚‹
     /// </summary>
     public void ResetScoreText(Score score)
     {

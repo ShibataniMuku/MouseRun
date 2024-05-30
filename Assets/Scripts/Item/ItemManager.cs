@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 
 public class ItemManager
 {
@@ -22,7 +22,7 @@ public class ItemManager
     }
 
     /// <summary>
-    /// ‰½‚à”z’u‚³‚ê‚Ä‚¢‚È‚¢À•W‚ÌƒŠƒXƒg‚ğ•Ô‚·
+    /// ä½•ã‚‚é…ç½®ã•ã‚Œã¦ã„ãªã„åº§æ¨™ã®ãƒªã‚¹ãƒˆã‚’è¿”ã™
     /// </summary>
     /// <returns></returns>
     public List<Grid> GetItemStatusList()

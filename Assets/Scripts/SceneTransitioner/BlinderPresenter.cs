@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System.Threading;
 using Zenject;
 
@@ -21,7 +21,7 @@ public class BlinderPresenter : IInitializable
     }
 
     /// <summary>
-    /// ƒuƒ‰ƒbƒNƒCƒ“ŠJn‚ÉŒÄ‚Î‚ê‚é
+    /// ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³é–‹å§‹æ™‚ã«å‘¼ã°ã‚Œã‚‹
     /// </summary>
     /// <returns></returns>
     private async UniTask StartBlackInHandler()
@@ -33,7 +33,7 @@ public class BlinderPresenter : IInitializable
     }
 
     /// <summary>
-    /// ƒuƒ‰ƒbƒNƒAƒEƒgŠJn‚ÉŒÄ‚Î‚ê‚é
+    /// ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆé–‹å§‹æ™‚ã«å‘¼ã°ã‚Œã‚‹
     /// </summary>
     /// <returns></returns>
     private async UniTask StartBlackOutHandler()

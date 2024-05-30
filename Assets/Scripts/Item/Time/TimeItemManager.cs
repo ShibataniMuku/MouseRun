@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using Zenject;
 
 public class TimeItemManager : MonoBehaviour, IItemManager
@@ -25,42 +25,42 @@ public class TimeItemManager : MonoBehaviour, IItemManager
 
     public void InitFieldItem()
     {
-        // ŠÔ‰„’·‚ÌƒAƒCƒeƒ€‚ÍA‰Šú”z’u‚µ‚È‚¢
+        // æ™‚é–“å»¶é•·ã®ã‚¢ã‚¤ãƒ†ãƒ ã¯ã€åˆæœŸé…ç½®ã—ãªã„
     }
 
     public void GenerateItem(Grid grid)
     {
-        // ¶¬‚·‚éÀ•W‚ÍAItemManager—Ş‚ğŠÇ—‚·‚éItemManager‚Åİ’èIIIIIIIIII
+        // ç”Ÿæˆã™ã‚‹åº§æ¨™ã¯ã€ItemManageré¡ã‚’ç®¡ç†ã™ã‚‹ItemManagerã§è¨­å®šï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼
 
-        //ƒAƒNƒeƒBƒu‚Å‚È‚¢ƒIƒuƒWƒFƒNƒg‚ğbullets‚Ì’†‚©‚ç’Tõ
+        //ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ãªã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’bulletsã®ä¸­ã‹ã‚‰æ¢ç´¢
         foreach (Transform t in _timeItemParent)
         {
             if (!t.gameObject.activeSelf)
             {
-                //”ñƒAƒNƒeƒBƒu‚ÈƒIƒuƒWƒFƒNƒg‚ÌˆÊ’u‚Æ‰ñ“]‚ğİ’è
+                //éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½ç½®ã¨å›è»¢ã‚’è¨­å®š
                 t.SetPositionAndRotation(_pipeManager.pipes[grid.x, grid.y].transform.position, Quaternion.identity);
-                //ƒAƒNƒeƒBƒu‚É‚·‚é
+                //ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹
                 t.gameObject.SetActive(true);
                 return;
             }
         }
 
-        //”ñƒAƒNƒeƒBƒu‚ÈƒIƒuƒWƒFƒNƒg‚ª‚È‚¢ê‡V‹K¶¬
-        //¶¬‚Ébullets‚ÌqƒIƒuƒWƒFƒNƒg‚É‚·‚é
+        //éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒãªã„å ´åˆæ–°è¦ç”Ÿæˆ
+        //ç”Ÿæˆæ™‚ã«bulletsã®å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã™ã‚‹
         Instantiate(_timeItem, _pipeManager.pipes[grid.x, grid.y].transform.position, Quaternion.identity, _timeItemParent);
 
-        // ƒAƒCƒeƒ€î•ñ‚ğ“o˜^
+        // ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã‚’ç™»éŒ²
         _itemManager.SetItemStatus(new Grid(grid.x, grid.y));
     }
 
     public void PickUpItem(int posX, int posY, float time)
     {
         _timeManager.MainTimer.AddTime(new TimeLimit(time));
-        // ƒAƒCƒeƒ€î•ñ‚ğíœ
+        // ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã‚’å‰Šé™¤
         _itemManager.RemoveItem(new Grid(posX, posY));
 
 
-        // Ÿ‚ÌƒAƒCƒeƒ€‚ğ¶¬‚·‚éˆ— ‚Ü‚½‚Í ƒAƒCƒeƒ€‚ªŠl‚ç‚ê‚ÄŒ¸‚Á‚½‚±‚Æ‚ğ“`‚¦‚é
+        // æ¬¡ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ç”Ÿæˆã™ã‚‹å‡¦ç† ã¾ãŸã¯ ã‚¢ã‚¤ãƒ†ãƒ ãŒç²ã‚‰ã‚Œã¦æ¸›ã£ãŸã“ã¨ã‚’ä¼ãˆã‚‹
 
     }
 }

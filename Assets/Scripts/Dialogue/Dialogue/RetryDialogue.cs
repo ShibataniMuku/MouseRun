@@ -1,4 +1,4 @@
-using Zenject;
+ï»¿using Zenject;
 
 public class RetryDialogue : Dialogue, IDialogue
 {
@@ -14,7 +14,7 @@ public class RetryDialogue : Dialogue, IDialogue
     }
 
     /// <summary>
-    /// ƒvƒŒƒC‚ğ‰‚ß‚©‚ç‚â‚è’¼‚·
+    /// ãƒ—ãƒ¬ã‚¤ã‚’åˆã‚ã‹ã‚‰ã‚„ã‚Šç›´ã™
     /// </summary>
     public void Retry()
     {

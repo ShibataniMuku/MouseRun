@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -13,9 +13,9 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
     [Inject]
     private PipeManager _pipeManager;
 
-    [SerializeField, Header("¶¬‚³‚ê‚é‚Ü‚Å‚ÌŠÔ")]
+    [SerializeField, Header("ç”Ÿæˆã•ã‚Œã‚‹ã¾ã§ã®æ™‚é–“")]
     private float _separateGeneratingItem = 3;
-    [SerializeField, Header("‰Šú‚Ì”z’u”")]
+    [SerializeField, Header("åˆæœŸã®é…ç½®æ•°")]
     private int _defaultSettingCount = 8;
 
     [SerializeField]
@@ -25,14 +25,14 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
 
     public void Initialize()
     {
-        Debug.Log("ƒXƒRƒAƒAƒCƒeƒ€‚Ì”z’u‚ğ‰Šú‰»‚µ‚Ü‚µ‚½");
+        Debug.Log("ã‚¹ã‚³ã‚¢ã‚¢ã‚¤ãƒ†ãƒ ã®é…ç½®ã‚’åˆæœŸåŒ–ã—ã¾ã—ãŸ");
 
         InitFieldItem();
     }
 
     public void InitFieldItem()
     {
-        // ƒAƒCƒeƒ€‚Ì”z’u‚Ì‰Šú‰»
+        // ã‚¢ã‚¤ãƒ†ãƒ ã®é…ç½®ã®åˆæœŸåŒ–
         for(int i = 0; i < _defaultSettingCount; i++)
         {
             List<Grid> isNotPlaced = _itemManager.GetItemStatusList();
@@ -46,18 +46,18 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
     {
         if (_itemManager.GetItemStatus(grid))
         {
-            Debug.LogError("Šù‚ÉƒAƒCƒeƒ€‚ª”z’u‚³‚ê‚Ä‚¢‚é‘«ê‚ÉAd•¡‚µ‚ÄƒAƒCƒeƒ€‚ğ”z’u‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·B");
+            Debug.LogError("æ—¢ã«ã‚¢ã‚¤ãƒ†ãƒ ãŒé…ç½®ã•ã‚Œã¦ã„ã‚‹è¶³å ´ã«ã€é‡è¤‡ã—ã¦ã‚¢ã‚¤ãƒ†ãƒ ã‚’é…ç½®ã—ã‚ˆã†ã¨ã—ã¦ã„ã¾ã™ã€‚");
             return;
         }
 
-        //ƒAƒNƒeƒBƒu‚Å‚È‚¢ƒIƒuƒWƒFƒNƒg‚ğbullets‚Ì’†‚©‚ç’Tõ
+        //ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ãªã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’bulletsã®ä¸­ã‹ã‚‰æ¢ç´¢
         foreach (Transform t in _scoreItemParent)
         {
             if (!t.gameObject.activeSelf)
             {
-                //”ñƒAƒNƒeƒBƒu‚ÈƒIƒuƒWƒFƒNƒg‚ÌˆÊ’u‚Æ‰ñ“]‚ğİ’è
+                //éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½ç½®ã¨å›è»¢ã‚’è¨­å®š
                 t.SetPositionAndRotation(_pipeManager.pipes[grid.x, grid.y].transform.position, Quaternion.identity);
-                //ƒAƒNƒeƒBƒu‚É‚·‚é
+                //ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹
                 t.gameObject.SetActive(true);
 
                 t.gameObject.GetComponent<IPickUpable>().InitPosition(grid);
@@ -65,20 +65,20 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
             }
         }
 
-        //”ñƒAƒNƒeƒBƒu‚ÈƒIƒuƒWƒFƒNƒg‚ª‚È‚¢ê‡V‹K¶¬
-        //¶¬‚Ébullets‚ÌqƒIƒuƒWƒFƒNƒg‚É‚·‚é
+        //éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒãªã„å ´åˆæ–°è¦ç”Ÿæˆ
+        //ç”Ÿæˆæ™‚ã«bulletsã®å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã™ã‚‹
         GameObject item = Instantiate(_scoreItem, _pipeManager.pipes[grid.x, grid.y].transform.position, Quaternion.identity, _scoreItemParent);
         item.GetComponent<IPickUpable>().InitPosition(grid);
         item.GetComponent<ScoreItem>().Init(this);
 
-        // ƒAƒCƒeƒ€î•ñ‚ğ“o˜^
+        // ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã‚’ç™»éŒ²
         _itemManager.SetItemStatus(new Grid(grid.x, grid.y));
     }
 
     /// <summary>
-    /// ƒAƒCƒeƒ€‚ğƒ‰ƒ“ƒ_ƒ€‚É¶¬‚·‚é
+    /// ã‚¢ã‚¤ãƒ†ãƒ ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã«ç”Ÿæˆã™ã‚‹
     /// </summary>
-    /// <param name="delayTime">‰½•bŒã‚É¶¬‚·‚é‚©</param>
+    /// <param name="delayTime">ä½•ç§’å¾Œã«ç”Ÿæˆã™ã‚‹ã‹</param>
     public async void GenerateItem(float delayTime)
     {
         float time = UnityEngine.Random.Range(delayTime * 0.5f, delayTime * 1.5f);
@@ -94,7 +94,7 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
     public void PickUpItem(int posX, int posY, Score score)
     {
         _scoreManager.AddScore(score);
-        // ƒAƒCƒeƒ€î•ñ‚ğíœ
+        // ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã‚’å‰Šé™¤
         _itemManager.RemoveItem(new Grid(posX, posY));
 
         GenerateItem(_separateGeneratingItem);

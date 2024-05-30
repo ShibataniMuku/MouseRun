@@ -1,5 +1,4 @@
-using UnityEngine;
-using Zenject;
+﻿using Zenject;
 
 public class ResultInstaller : MonoInstaller
 {
@@ -7,6 +6,10 @@ public class ResultInstaller : MonoInstaller
     {
         Container
             .BindInterfacesAndSelfTo<ResultPhase>()
+            .AsSingle();
+
+        Container
+            .BindInterfacesAndSelfTo<ResultAnnouncementPresenter>()
             .AsSingle();
     }
 }

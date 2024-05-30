@@ -1,4 +1,4 @@
-using Zenject;
+ï»¿using Zenject;
 
 public class GoToTitleDialogue : Dialogue, IDialogue
 {
@@ -12,7 +12,7 @@ public class GoToTitleDialogue : Dialogue, IDialogue
     }
 
     /// <summary>
-    /// ƒ^ƒCƒgƒ‹ƒV[ƒ“‚É‘JˆÚ
+    /// ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³ã«é·ç§»
     /// </summary>
     public void GoToTitle()
     {

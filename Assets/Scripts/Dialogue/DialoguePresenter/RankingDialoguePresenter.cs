@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class RankingDialoguePresenter : DialoguePresenter
 {
-    [SerializeField, Tooltip("”wŒiƒ{ƒ^ƒ“‚ğŠÜ‚ŞAƒ‰ƒ“ƒLƒ“ƒO‚Ìƒ_ƒCƒAƒƒO")]
+    [SerializeField, Tooltip("èƒŒæ™¯ãƒœã‚¿ãƒ³ã‚’å«ã‚€ã€ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°")]
     private RankingDialogue _rankingDialogueModel;
 
     // Start is called before the first frame update

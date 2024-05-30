@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
@@ -18,7 +18,7 @@ public class Score
         }
         else
         {
-            Debug.LogError("•Ï”Score‚É0–¢–‚Ì’l‚ªİ’è‚³‚ê‚Ü‚µ‚½B");
+            Debug.LogError("å¤‰æ•°Scoreã«0æœªæº€ã®å€¤ãŒè¨­å®šã•ã‚Œã¾ã—ãŸã€‚");
         }
     }
 

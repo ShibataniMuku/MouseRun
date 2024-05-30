@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,9 +6,9 @@ using UniRx;
 
 public class RetryDialoguePresenter : DialoguePresenter
 {
-    [SerializeField, Tooltip("ƒŠƒgƒ‰ƒCƒ{ƒ^ƒ“")]
+    [SerializeField, Tooltip("ãƒªãƒˆãƒ©ã‚¤ãƒœã‚¿ãƒ³")]
     private TransitionToMainButtonView _transitionToMainButton;
-    [SerializeField, Tooltip("”wŒiƒ{ƒ^ƒ“‚ðŠÜ‚ÞAƒŠƒgƒ‰ƒC—p‚Ìƒ_ƒCƒAƒƒO")]
+    [SerializeField, Tooltip("èƒŒæ™¯ãƒœã‚¿ãƒ³ã‚’å«ã‚€ã€ãƒªãƒˆãƒ©ã‚¤ç”¨ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°")]
     private RetryDialogue _retryDialogueModel;
 
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class RetryDialoguePresenter : DialoguePresenter
 
         SetDialogue(_retryDialogueModel);
 
-        // ƒŠƒgƒ‰ƒCƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚±‚Æ‚ðModel‘¤‚É’Ê’m
+        // ãƒªãƒˆãƒ©ã‚¤ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã“ã¨ã‚’Modelå´ã«é€šçŸ¥
         _transitionToMainButton.buttonSubject
                 .Subscribe(x =>
                 {

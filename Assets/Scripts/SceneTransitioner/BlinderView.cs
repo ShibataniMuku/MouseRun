@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System.Threading;
 using UniRx;
@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class BlinderView : MonoBehaviour
 {
-    [SerializeField, Range(0, 3), Header("ƒV[ƒ“‘JˆÚŠÔ")]
+    [SerializeField, Range(0, 3), Header("ã‚·ãƒ¼ãƒ³é·ç§»æ™‚é–“")]
     private float _sceneTransDuration = 1;
-    [SerializeField, Header("ƒV[ƒ“‘JˆÚ‚Ì–Ú‰B‚µ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“")]
+    [SerializeField, Header("ã‚·ãƒ¼ãƒ³é·ç§»æ™‚ã®ç›®éš ã—ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³")]
     private AnimationCurve _blinderAnimCurve;
-    [SerializeField, Tooltip("ƒV[ƒ“‘JˆÚ‚É‰æ–Ê‚ğ•¢‚¤–Ú‰B‚µ")]
+    [SerializeField, Tooltip("ã‚·ãƒ¼ãƒ³é·ç§»æ™‚ã«ç”»é¢ã‚’è¦†ã†ç›®éš ã—")]
     private GameObject _blinder;
-    [SerializeField, Tooltip("–Ú‰B‚µ‚ğ§Œä‚·‚éƒ}ƒXƒN")]
+    [SerializeField, Tooltip("ç›®éš ã—ã‚’åˆ¶å¾¡ã™ã‚‹ãƒã‚¹ã‚¯")]
     private GameObject _mask;
 
     private RectTransform _maskRect;
@@ -23,7 +23,7 @@ public class BlinderView : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰~ó‚Éƒuƒ‰ƒbƒNƒCƒ“
+    /// å††çŠ¶ã«ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
     /// </summary>
     /// <param name="token"></param>
     /// <returns></returns>
@@ -47,7 +47,7 @@ public class BlinderView : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰~ó‚Éƒuƒ‰ƒbƒNƒAƒEƒg
+    /// å††çŠ¶ã«ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
     /// </summary>
     /// <param name="token"></param>
     /// <returns></returns>

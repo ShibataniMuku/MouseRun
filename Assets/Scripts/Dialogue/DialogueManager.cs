@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
@@ -20,9 +20,9 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ_ƒCƒAƒƒO‚ÌŠJ•Â‚ª‚ ‚Á‚½Û‚ÉŒÄ‚Î‚ê‚é
+    /// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®é–‹é–‰ãŒã‚ã£ãŸéš›ã«å‘¼ã°ã‚Œã‚‹
     /// </summary>
-    /// <param name="isOpen">ŠJ‚¢‚½‚©•Â‚¶‚½‚©</param>
+    /// <param name="isOpen">é–‹ã„ãŸã‹é–‰ã˜ãŸã‹</param>
     public void ControllDialogueLayer(bool isOpen)
     {
         if (isOpen)
@@ -46,6 +46,6 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Œ»İŠJ‚¢‚Ä‚¢‚éƒ_ƒCƒAƒƒO‚Ì”‚Í " +  openingDialogueCount);
+        Debug.Log("ç¾åœ¨é–‹ã„ã¦ã„ã‚‹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®æ•°ã¯ " +  openingDialogueCount);
     }
 }

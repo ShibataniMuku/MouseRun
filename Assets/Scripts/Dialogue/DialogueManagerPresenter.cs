@@ -1,19 +1,19 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
 public class DialogueManagerPresenter : MonoBehaviour
 {
-    [SerializeField, Tooltip("”wŒiƒ{ƒ^ƒ“‚ğŠÜ‚ŞAŒÂ•Ê‚Ìƒ_ƒCƒAƒƒO")]
+    [SerializeField, Tooltip("èƒŒæ™¯ãƒœã‚¿ãƒ³ã‚’å«ã‚€ã€å€‹åˆ¥ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°")]
     private List<Dialogue> _dialogueView = new List<Dialogue>();
-    [SerializeField, Tooltip("ƒ_ƒCƒAƒƒO‚ÌŠJ•Âó‹µ‚ğŠÇ—‚·‚éDialogueManager")]
+    [SerializeField, Tooltip("ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®é–‹é–‰çŠ¶æ³ã‚’ç®¡ç†ã™ã‚‹DialogueManager")]
     private DialogueManager _dialogueModel;
 
     // Start is called before the first frame update
     void Start()
     {
-        // ƒ_ƒCƒAƒƒO‚ªŠJ•Â‚³‚ê‚½‚±‚Æ‚ğModel‚É’Ê’m
+        // ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒé–‹é–‰ã•ã‚ŒãŸã“ã¨ã‚’Modelã«é€šçŸ¥
         foreach(Dialogue dialogue in _dialogueView)
         {
             dialogue.IsOpen
@@ -25,7 +25,7 @@ public class DialogueManagerPresenter : MonoBehaviour
                 .AddTo(this);
         }
 
-        // ŠJ‚¢‚Ä‚¢‚éƒ_ƒCƒAƒƒO‚Ì”‚É•ÏX‚ª‚ ‚Á‚½‚±‚Æ‚ğView‚É’Ê’m
+        // é–‹ã„ã¦ã„ã‚‹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®æ•°ã«å¤‰æ›´ãŒã‚ã£ãŸã“ã¨ã‚’Viewã«é€šçŸ¥
         _dialogueModel.HasChangedOpeningDialogue
             .SkipLatestValueOnSubscribe()
             .Subscribe(x =>

@@ -1,20 +1,20 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DialogueData", menuName = "ScriptableObjects/CreateDialogueParamAsset")]
 public class DialogueData : ScriptableObject
 {
-    [SerializeField, Range(0, 1), Header("ƒ_ƒCƒAƒƒO‚ÌŠJ•ÂŠÔ")]
+    [SerializeField, Range(0, 1), Header("ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®é–‹é–‰æ™‚é–“")]
     public float _dialogueAnimDuration = 0.2f;
-    [SerializeField, Range(0, 1), Header("ƒ_ƒCƒAƒƒO‚ÌŒã‘ŞŠÔ")]
+    [SerializeField, Range(0, 1), Header("ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®å¾Œé€€æ™‚é–“")]
     public float _dialogueRetreatDuration = 0.4f;
-    [SerializeField, Range(0, 200), Header("ƒ_ƒCƒAƒƒO‚ÌŒã‘Ş‹——£")]
+    [SerializeField, Range(0, 200), Header("ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®å¾Œé€€è·é›¢")]
     public float _dialogueRetreatDistance = 100;
-    [SerializeField, Range(0, 1), Header("”wŒi‚Ì–Ú‰B‚µ‚Ì“§–¾“x")]
+    [SerializeField, Range(0, 1), Header("èƒŒæ™¯ã®ç›®éš ã—ã®é€æ˜åº¦")]
     public float _backgroundAlpha = 0.5f;
-    [SerializeField, Range(0, 100), Header("”wŒi‚Ìƒuƒ‰[‹­“x")]
+    [SerializeField, Range(0, 100), Header("èƒŒæ™¯ã®ãƒ–ãƒ©ãƒ¼å¼·åº¦")]
     public float _backgroundBlur = 30;
-    [SerializeField, Range(0, 1), Header("”wŒi‚Ì–Ú‰B‚µ‚ÌoŒ»ŠÔ")]
+    [SerializeField, Range(0, 1), Header("èƒŒæ™¯ã®ç›®éš ã—ã®å‡ºç¾æ™‚é–“")]
     public float _backgroundAnimDuration = 0.4f;
 }

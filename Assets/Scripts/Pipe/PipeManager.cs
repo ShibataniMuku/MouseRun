@@ -1,18 +1,18 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
 public class PipeManager : MonoBehaviour
 {
-    [SerializeField, Header("ƒpƒCƒv‚Ìƒ}ƒX”")]
+    [SerializeField, Header("ãƒ‘ã‚¤ãƒ—ã®ãƒã‚¹æ•°")]
     public Vector2Int gridCount = new Vector2Int(6, 6);
 
     [SerializeField]
     private PipeType[] pipeType = new PipeType[2];
     [SerializeField]
-    RectTransform fieldArea; // ƒpƒCƒv‚ª•\¦‚³‚ê‚¤‚éƒGƒŠƒA
+    RectTransform fieldArea; // ãƒ‘ã‚¤ãƒ—ãŒè¡¨ç¤ºã•ã‚Œã†ã‚‹ã‚¨ãƒªã‚¢
     [SerializeField]
-    Transform pipeParent; // ƒpƒCƒv‚ÌeƒIƒuƒWƒFƒNƒg
+    Transform pipeParent; // ãƒ‘ã‚¤ãƒ—ã®è¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
     GameObject[,] pipeObjects;
     
@@ -31,14 +31,14 @@ public class PipeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ‘€ì‰Â”\ƒtƒF[ƒY‚É‚È‚Á‚½‚çA‰ñ“]‰Â”\‚É‚·‚é
+        // æ“ä½œå¯èƒ½ãƒ•ã‚§ãƒ¼ã‚ºã«ãªã£ãŸã‚‰ã€å›è»¢å¯èƒ½ã«ã™ã‚‹
         _playingPhase.SetOnStartGame(() =>
         {
             foreach (Pipe pipe in pipes) pipe.SetCanRotational(true);
             return UniTask.CompletedTask;
         });
 
-        // ‘€ì•s”\ƒtƒF[ƒY‚É‚È‚Á‚½‚çA‰ñ“]•s”\‚É‚·‚é
+        // æ“ä½œä¸èƒ½ãƒ•ã‚§ãƒ¼ã‚ºã«ãªã£ãŸã‚‰ã€å›è»¢ä¸èƒ½ã«ã™ã‚‹
         _playingPhase.SetOnFinishGame(() =>
         {
             foreach (Pipe pipe in pipes) pipe.SetCanRotational(false);
@@ -47,53 +47,53 @@ public class PipeManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒtƒB[ƒ‹ƒh‚ğ¶¬‚·‚é
+    /// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’ç”Ÿæˆã™ã‚‹
     /// </summary>
-    /// <param name="fieldGrid">ƒtƒB[ƒ‹ƒh‚ÌƒTƒCƒY</param>
+    /// <param name="fieldGrid">ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ã‚µã‚¤ã‚º</param>
     private void GeneratePipes(Vector2Int gridCount)
     {
         //float fieldSizeX = Screen.width - fieldArea.offsetMin.x - fieldArea.offsetMax.x;
         //float fieldSizeY = Screen.height - fieldArea.offsetMin.y - fieldArea.offsetMax.y;
-        //Vector2 fieldSize = new Vector2(fieldSizeX, fieldSizeY ); // ƒpƒCƒv‚ª•\¦‚³‚ê‚¤‚éƒGƒŠƒA‚Ì‘å‚«‚³
-        //float gridSize = 0; // 1ƒ}ƒX•ª‚Ì‘å‚«‚³
-        //Vector2 margin; // ‰æ–Êc‰¡”ä‚É‚æ‚é—]”’
+        //Vector2 fieldSize = new Vector2(fieldSizeX, fieldSizeY ); // ãƒ‘ã‚¤ãƒ—ãŒè¡¨ç¤ºã•ã‚Œã†ã‚‹ã‚¨ãƒªã‚¢ã®å¤§ãã•
+        //float gridSize = 0; // 1ãƒã‚¹åˆ†ã®å¤§ãã•
+        //Vector2 margin; // ç”»é¢ç¸¦æ¨ªæ¯”ã«ã‚ˆã‚‹ä½™ç™½
 
-        Vector3[] corners = new Vector3[4]; // RectTransform‚Ì¶‰º‚Ìƒ[ƒ‹ƒhÀ•W‚ğæ“¾
+        Vector3[] corners = new Vector3[4]; // RectTransformã®å·¦ä¸‹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‚’å–å¾—
         fieldArea.GetWorldCorners(corners);
 
 
         float fieldSizeX = corners[2].x - corners[0].x;
         float fieldSizeY = corners[1].y - corners[0].y;
-        Vector2 fieldSize = new Vector2(fieldSizeX, fieldSizeY); // ƒpƒCƒv‚ª•\¦‚³‚ê‚¤‚éƒGƒŠƒA‚Ì‘å‚«‚³
-        float gridSize = 0; // 1ƒ}ƒX•ª‚Ì‘å‚«‚³
-        Vector2 margin; // ‰æ–Êc‰¡”ä‚É‚æ‚é—]”’
+        Vector2 fieldSize = new Vector2(fieldSizeX, fieldSizeY); // ãƒ‘ã‚¤ãƒ—ãŒè¡¨ç¤ºã•ã‚Œã†ã‚‹ã‚¨ãƒªã‚¢ã®å¤§ãã•
+        float gridSize = 0; // 1ãƒã‚¹åˆ†ã®å¤§ãã•
+        Vector2 margin; // ç”»é¢ç¸¦æ¨ªæ¯”ã«ã‚ˆã‚‹ä½™ç™½
 
 
 
 
-        // c‰¡‚Ì’·‚³‚É‚æ‚Á‚ÄA‰¡‚É—]”’‚ğì‚é‚©Ac‚É—]”’‚ğì‚é‚©‚ğŒˆ’è
+        // ç¸¦æ¨ªã®é•·ã•ã«ã‚ˆã£ã¦ã€æ¨ªã«ä½™ç™½ã‚’ä½œã‚‹ã‹ã€ç¸¦ã«ä½™ç™½ã‚’ä½œã‚‹ã‹ã‚’æ±ºå®š
         if ((fieldSize.x) / gridCount.x <= (fieldSize.y) / gridCount.y)
         {
             gridSize = fieldSize.x / gridCount.x;
-            Debug.Log("x²•ûŒü‚Ì•û‚ª’Z‚¢");
+            Debug.Log("xè»¸æ–¹å‘ã®æ–¹ãŒçŸ­ã„");
         }
         else
         {
             gridSize = fieldSize.y / gridCount.y;
         }
 
-        // ƒpƒCƒv‚Ì”z’u‚ğ‰¡•‚É‡‚í‚¹‚é
+        // ãƒ‘ã‚¤ãƒ—ã®é…ç½®ã‚’æ¨ªå¹…ã«åˆã‚ã›ã‚‹
         margin.x = fieldSize.x - gridSize * gridCount.x;
         margin.y = fieldSize.y - gridSize * gridCount.y;
 
-        // ƒpƒCƒv‚ğ¶¬
+        // ãƒ‘ã‚¤ãƒ—ã‚’ç”Ÿæˆ
         for (int iy = 0; iy < gridCount.y; iy++)
         {
             for (int jx = 0; jx < gridCount.x; jx++)
             {
-                // —]”’ + ”¼ƒ}ƒX + 1ƒ}ƒX‚Ì‚‚³ ~ ƒ}ƒX”
+                // ä½™ç™½ + åŠãƒã‚¹ + 1ãƒã‚¹ã®é«˜ã• Ã— ãƒã‚¹æ•°
                 float screenPosX = margin.x / 2 + gridSize / 2 + gridSize * jx;
-                // SafeArea + —]”’ + ”¼ƒ}ƒX + 1ƒ}ƒX‚Ì‚‚³ ~ ƒ}ƒX”
+                // SafeArea + ä½™ç™½ + åŠãƒã‚¹ + 1ãƒã‚¹ã®é«˜ã• Ã— ãƒã‚¹æ•°
                 float screenPosY = corners[0].y + margin.y / 2 + gridSize / 2 + gridSize * iy;
 
                 Vector3 screenPos = new Vector3(screenPosX, screenPosY, 0);
@@ -110,10 +110,10 @@ public class PipeManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒpƒCƒv‚Ìí—Ş‚ğŒˆ’è‚·‚é
+    /// ãƒ‘ã‚¤ãƒ—ã®ç¨®é¡ã‚’æ±ºå®šã™ã‚‹
     /// </summary>
-    /// <param name="x">xƒ}ƒXÀ•W</param>
-    /// <param name="y">yƒ}ƒXÀ•W</param>
+    /// <param name="x">xãƒã‚¹åº§æ¨™</param>
+    /// <param name="y">yãƒã‚¹åº§æ¨™</param>
     /// <returns></returns>
     private GameObject DecidePipeType(int x, int y)
     {
@@ -121,7 +121,7 @@ public class PipeManager : MonoBehaviour
 
         if ((x == 0 && (y == 0 || y == gridCount.y - 1)) || (x == gridCount.x - 1 && (y == 0 || y == gridCount.y - 1)))
         {
-            // l‚ÂŠp
+            // å››ã¤è§’
             if (num <= (pipeType[0].edgeProbability / (pipeType[0].edgeProbability + pipeType[1].edgeProbability)) * 100)
             {
                 return pipeType[0].pipeObj;
@@ -133,7 +133,7 @@ public class PipeManager : MonoBehaviour
         }
         else if (x == gridCount.x - 1 || x == 0 || y == gridCount.y - 1 || y == 0)
         {
-            // ŠOü
+            // å¤–å‘¨
             if (num <= (pipeType[0].outProbability / (pipeType[0].outProbability + pipeType[1].outProbability)) * 100)
             {
                 return pipeType[0].pipeObj;
@@ -145,7 +145,7 @@ public class PipeManager : MonoBehaviour
         }
         else
         {
-            // “à•”
+            // å†…éƒ¨
             if (num <= (pipeType[0].inProbability / (pipeType[0].inProbability + pipeType[1].inProbability)) * 100)
             {
                 return pipeType[0].pipeObj;

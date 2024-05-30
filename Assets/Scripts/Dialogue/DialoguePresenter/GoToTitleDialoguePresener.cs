@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,9 +6,9 @@ using UniRx;
 
 public class GoToTitleDialoguePresener : DialoguePresenter
 {
-    [SerializeField, Tooltip("ƒ^ƒCƒgƒ‹‚É–ß‚éƒ{ƒ^ƒ“")]
+    [SerializeField, Tooltip("ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹ãƒœã‚¿ãƒ³")]
     private TransitionToTitleButtonView _transitionToTitleButtonView;
-    [SerializeField, Tooltip("”wŒiƒ{ƒ^ƒ“‚ðŠÜ‚ÞAƒ^ƒCƒgƒ‹‚É–ß‚é—p‚Ìƒ_ƒCƒAƒƒO")]
+    [SerializeField, Tooltip("èƒŒæ™¯ãƒœã‚¿ãƒ³ã‚’å«ã‚€ã€ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹ç”¨ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°")]
     private GoToTitleDialogue _goToTitleDialogueModel;
 
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class GoToTitleDialoguePresener : DialoguePresenter
 
         SetDialogue(_goToTitleDialogueModel);
 
-        // ƒ^ƒCƒgƒ‹‚É–ß‚éƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚±‚Æ‚ðModel‘¤‚É’Ê’m
+        // ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã“ã¨ã‚’Modelå´ã«é€šçŸ¥
         _transitionToTitleButtonView.buttonSubject
                 .Subscribe(x =>
                 {

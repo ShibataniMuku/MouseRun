@@ -1,4 +1,4 @@
-interface IInputProvider
+﻿interface IInputProvider
 {
     void GetPause();
 }

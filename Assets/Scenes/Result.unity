@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 48398839}
   m_Layer: 5
-  m_Name: LevelBonus (1)
+  m_Name: Ranking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 321969072}
   m_Layer: 5
-  m_Name: LevelBonus (1)
+  m_Name: Exp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 372117215}
   - component: {fileID: 372117214}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 372623617}
   - component: {fileID: 372623616}
   m_Layer: 5
-  m_Name: RankingText
+  m_Name: Colummn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -658,7 +658,7 @@ GameObject:
   - component: {fileID: 390035050}
   - component: {fileID: 390035049}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Colummn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -792,7 +792,7 @@ GameObject:
   - component: {fileID: 411196580}
   - component: {fileID: 411196579}
   m_Layer: 5
-  m_Name: Rnak
+  m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1001,7 +1001,7 @@ GameObject:
   m_Component:
   - component: {fileID: 504033394}
   m_Layer: 5
-  m_Name: LevelBonus
+  m_Name: HighScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1038,7 +1038,7 @@ GameObject:
   m_Component:
   - component: {fileID: 518336324}
   m_Layer: 5
-  m_Name: Ranking
+  m_Name: AdditionalBonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1077,7 +1077,7 @@ GameObject:
   - component: {fileID: 537410775}
   - component: {fileID: 537410774}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Colummn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1227,7 +1227,7 @@ GameObject:
   - component: {fileID: 608260147}
   - component: {fileID: 608260146}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1573,7 +1573,7 @@ GameObject:
   - component: {fileID: 804590926}
   - component: {fileID: 804590925}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Colummn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1938,7 +1938,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1196164378}
   m_Layer: 5
-  m_Name: Bonus
+  m_Name: Ranking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2014,7 +2014,7 @@ GameObject:
   - component: {fileID: 1238088259}
   - component: {fileID: 1238088258}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2196,6 +2196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1255051551}
+  - component: {fileID: 1255051552}
   m_Layer: 5
   m_Name: UIPresenter
   m_TagString: Untagged
@@ -2222,6 +2223,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1255051552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255051550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ab7220099e5734c807654697c78744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scoreText: {fileID: 1539219937}
+  _levelBonusText: {fileID: 1866707274}
+  _additionalBonusText: {fileID: 411196577}
+  _gotCoinText: {fileID: 1238088256}
+  _gotExpText: {fileID: 372117212}
+  _highScoreText: {fileID: 1359998737}
+  _rankingText: {fileID: 608260144}
 --- !u!1 &1268499763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2232,6 +2252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1268499764}
   - component: {fileID: 1268499765}
+  - component: {fileID: 1268499766}
   m_Layer: 5
   m_Name: ButtonPresenter
   m_TagString: Untagged
@@ -2274,6 +2295,21 @@ MonoBehaviour:
   _transitionToTitleButtonView: {fileID: 619858604}
   _transitionToRankingButtonView: {fileID: 1902124714}
   _shareResultButtonView: {fileID: 1194649178}
+  _shareButtonModel: {fileID: 1268499766}
+--- !u!114 &1268499766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268499763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 201e378ceee614581a42e08e60c05dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMessage: MouseRun
+  hashTag: MouseRun
 --- !u!1 &1325036285
 GameObject:
   m_ObjectHideFlags: 0
@@ -2284,7 +2320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1325036286}
   m_Layer: 5
-  m_Name: LevelBonus
+  m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2409,7 +2445,7 @@ GameObject:
   - component: {fileID: 1359998740}
   - component: {fileID: 1359998739}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2815,7 +2851,7 @@ GameObject:
   - component: {fileID: 1535259951}
   - component: {fileID: 1535259952}
   m_Layer: 5
-  m_Name: BonusText
+  m_Name: Geting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3149,7 +3185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1575274805}
   m_Layer: 5
-  m_Name: HighScore
+  m_Name: LevelBonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3188,7 +3224,7 @@ GameObject:
   - component: {fileID: 1697550170}
   - component: {fileID: 1697550169}
   m_Layer: 5
-  m_Name: HighScoreText
+  m_Name: Colummn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3326,7 +3362,7 @@ GameObject:
   - component: {fileID: 1783397117}
   - component: {fileID: 1783397118}
   m_Layer: 5
-  m_Name: Other
+  m_Name: Bonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3429,7 +3465,7 @@ GameObject:
   - component: {fileID: 1866707277}
   - component: {fileID: 1866707276}
   m_Layer: 5
-  m_Name: Score
+  m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3857,7 +3893,7 @@ GameObject:
   - component: {fileID: 1977429971}
   - component: {fileID: 1977429972}
   m_Layer: 5
-  m_Name: BonusText
+  m_Name: Ranking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3922,7 +3958,7 @@ GameObject:
   - component: {fileID: 2038834297}
   - component: {fileID: 2038834296}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Colummn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +8,7 @@ using Zenject;
 
 public class Characters : MonoBehaviour
 {
-    [SerializeField, Header("ˆÚ“®‘¬“x")]
+    [SerializeField, Header("ç§»å‹•é€Ÿåº¦")]
     private float _speed = 1;
 
     [Inject]
@@ -16,11 +16,11 @@ public class Characters : MonoBehaviour
     [Inject]
     private PlayingPhase _playingPhase;
 
-    private List<Transform> _path = new List<Transform>(); // ’Ê‰ß“_
-    private TravelDirection _travelDirection; // is•ûŒü
-    private Vector2Int _currentLocation; // Œ»İ’n
+    private List<Transform> _path = new List<Transform>(); // é€šéç‚¹
+    private TravelDirection _travelDirection; // é€²è¡Œæ–¹å‘
+    private Vector2Int _currentLocation; // ç¾åœ¨åœ°
     private Sequence _moveSq;
-    private Transform _trans; // ƒLƒƒƒ‰ƒNƒ^[‚Ìtransform
+    private Transform _trans; // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®transform
 
     // Start is called before the first frame update
     void Start()
@@ -39,18 +39,18 @@ public class Characters : MonoBehaviour
 
         _trans = transform;
 
-        // ƒ}ƒEƒX‚Ì‰ŠúˆÊ’u‚ğŒˆ’è
+        // ãƒã‚¦ã‚¹ã®åˆæœŸä½ç½®ã‚’æ±ºå®š
         int posX = (int)(_pipeManager.pipes.GetLength(0) / 2);
         int posY = (int)(_pipeManager.pipes.GetLength(1) / 2);
         _trans.position = _pipeManager.pipes[posX, posY].gameObject.transform.position;
-        _currentLocation = new Vector2Int(posX, posY); // Œ»İ’n
-        _travelDirection = _pipeManager.pipes[posX, posY].GetPipeDirections()[Random.Range(0, 2)]; // Œ»İ‚Ìis•ûŒü
+        _currentLocation = new Vector2Int(posX, posY); // ç¾åœ¨åœ°
+        _travelDirection = _pipeManager.pipes[posX, posY].GetPipeDirections()[Random.Range(0, 2)]; // ç¾åœ¨ã®é€²è¡Œæ–¹å‘
         ResetPath();
         _moveSq.Pause();
     }
 
     /// <summary>
-    /// ˆÚ“®Œo˜H‚ÌƒpƒX‚ğÄİ’è
+    /// ç§»å‹•çµŒè·¯ã®ãƒ‘ã‚¹ã‚’å†è¨­å®š
     /// </summary>
     void ResetPath()
     {
@@ -59,16 +59,16 @@ public class Characters : MonoBehaviour
             case TravelDirection.up:
                 if (_currentLocation.y + 1 < _pipeManager.pipes.GetLength(1))
                 {
-                    // ƒtƒB[ƒ‹ƒh‚Ì’[‚Å‚È‚¯‚ê‚Î
+                    // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ç«¯ã§ãªã‘ã‚Œã°
                     if (!_pipeManager.pipes[_currentLocation.x, _currentLocation.y + 1].ResetPathPoint(_path, TravelDirection.down))
                     {
-                        // “¹‚ªŒq‚ª‚Á‚Ä‚¢‚È‚¯‚ê‚Îˆø‚«•Ô‚·
+                        // é“ãŒç¹‹ãŒã£ã¦ã„ãªã‘ã‚Œã°å¼•ãè¿”ã™
                         _pipeManager.pipes[_currentLocation.x, _currentLocation.y].ResetPathPoint(_path, _travelDirection);
                         _travelDirection = TravelDirection.down;
                     }
                     else
                     {
-                        // “¹‚ªŒq‚ª‚Á‚Ä‚¢‚ê‚ÎŒ»İ’n‚ğXV
+                        // é“ãŒç¹‹ãŒã£ã¦ã„ã‚Œã°ç¾åœ¨åœ°ã‚’æ›´æ–°
                         _pipeManager.pipes[_currentLocation.x, _currentLocation.y].SetIsOnCharacter(false);
                         _currentLocation += new Vector2Int(0, 1);
                         _pipeManager.pipes[_currentLocation.x, _currentLocation.y].SetIsOnCharacter(true);
@@ -76,7 +76,7 @@ public class Characters : MonoBehaviour
                 }
                 else
                 {
-                    // ƒtƒB[ƒ‹ƒh‚Ì’[‚È‚çˆø‚«•Ô‚·
+                    // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ç«¯ãªã‚‰å¼•ãè¿”ã™
                     _pipeManager.pipes[_currentLocation.x, _currentLocation.y].ResetPathPoint(_path, _travelDirection);
                     _travelDirection = TravelDirection.down;
                 }
@@ -149,14 +149,14 @@ public class Characters : MonoBehaviour
                 break;
         }
 
-        //Debug.Log("Œ»İ‚Ìis•ûŒü‚Í " + _travelDirection);
-        //Debug.Log("Œ»İ‚ÌÀ•W‚Í " + _currentLocation);
+        //Debug.Log("ç¾åœ¨ã®é€²è¡Œæ–¹å‘ã¯ " + _travelDirection);
+        //Debug.Log("ç¾åœ¨ã®åº§æ¨™ã¯ " + _currentLocation);
         SetTravelDirection(_currentLocation);
         AnimateCharacter();
     }
 
     /// <summary>
-    /// ƒLƒƒƒ‰ƒNƒ^[‚ğ“®‚©‚·
+    /// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’å‹•ã‹ã™
     /// </summary>
     private void AnimateCharacter()
     {
@@ -177,9 +177,9 @@ public class Characters : MonoBehaviour
     }
 
     /// <summary>
-    /// Œ»İ‚Ìis•ûŒü
+    /// ç¾åœ¨ã®é€²è¡Œæ–¹å‘
     /// </summary>
-    /// <param name="pos">Ÿ‚Ìƒ}ƒXÀ•W</param>
+    /// <param name="pos">æ¬¡ã®ãƒã‚¹åº§æ¨™</param>
     public void SetTravelDirection(Vector2Int pos)
     {
         TravelDirection t = _travelDirection;

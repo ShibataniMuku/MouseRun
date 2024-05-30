@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ public class TimeLimit
         }
         else
         {
-            Debug.LogError("•Ï”time‚É•s“KØ‚È’l‚ªİ’è‚³‚ê‚Ü‚µ‚½B");
+            Debug.LogError("å¤‰æ•°timeã«ä¸é©åˆ‡ãªå€¤ãŒè¨­å®šã•ã‚Œã¾ã—ãŸã€‚");
         }
     }
 }

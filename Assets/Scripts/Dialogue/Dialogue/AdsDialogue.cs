@@ -1,4 +1,4 @@
-public class AdsDialogue : Dialogue, IDialogue
+﻿public class AdsDialogue : Dialogue, IDialogue
 {
     // Start is called before the first frame update
     protected override void Start()

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using Zenject;
 
 public class ScoreItem : MonoBehaviour, IPickUpable
@@ -24,10 +24,10 @@ public class ScoreItem : MonoBehaviour, IPickUpable
 
     public void PickUp()
     {
-        // æ“¾‚µ‚½‚±‚Æ‚ğ’Ê’m
+        // å–å¾—ã—ãŸã“ã¨ã‚’é€šçŸ¥
         _scoreItemManager.PickUpItem(_posX, _posY, new Score(_scoreValue));
 
-        Debug.Log(_scoreValue + " “_Šl“¾");
+        Debug.Log(_scoreValue + " ç‚¹ç²å¾—");
 
         gameObject.SetActive(false);
     }

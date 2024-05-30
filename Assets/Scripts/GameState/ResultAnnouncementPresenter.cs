@@ -1,5 +1,5 @@
-
-using Unity.VisualScripting;
+﻿using Cysharp.Threading.Tasks;
+using Zenject;
 
 public class ResultAnnouncementPresenter : IInitializable
 {
@@ -14,6 +14,11 @@ public class ResultAnnouncementPresenter : IInitializable
 
     public void Initialize()
     {
-        throw new System.NotImplementedException();
+        _resultPhase.OnShowResult += ShowResult;
+    }
+
+    private async UniTask ShowResult(ResultInfo resultInfo)
+    {
+        await _resultAnnouncementView.ShowResult(resultInfo);
     }
 }

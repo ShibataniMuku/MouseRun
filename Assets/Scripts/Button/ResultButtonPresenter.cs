@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UniRx;
 using Zenject;
 
@@ -12,6 +12,8 @@ public class ResultButtonPresenter : MonoBehaviour
     private TransitonToRankingButtonView _transitionToRankingButtonView;
     [SerializeField]
     private ShareResultButtonView _shareResultButtonView;
+    [SerializeField]
+    private ShareButtonModel _shareButtonModel;
 
     [Inject]
     private SceneTransitioner _sceneTransitioner;
@@ -28,6 +30,9 @@ public class ResultButtonPresenter : MonoBehaviour
             .Subscribe(_ => _sceneTransitioner.StartTransitionSceneAndBlackOut(SceneEnum.Main));
 
         _shareResultButtonView.buttonSubject
-            .Subscribe(_ => _sceneTransitioner.StartTransitionSceneAndBlackOut(SceneEnum.Main));
+            .Subscribe(_ =>
+            {
+                _shareButtonModel.OnClickShareButton();
+            });
     }
 }

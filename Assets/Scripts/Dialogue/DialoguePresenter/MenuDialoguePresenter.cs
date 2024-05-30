@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +6,7 @@ using UniRx;
 
 public class MenuDialoguePresenter : DialoguePresenter
 {
-    [SerializeField, Tooltip("”wŒiƒ{ƒ^ƒ“‚ğŠÜ‚ŞAƒƒjƒ…[‚Ìƒ_ƒCƒAƒƒO")]
+    [SerializeField, Tooltip("èƒŒæ™¯ãƒœã‚¿ãƒ³ã‚’å«ã‚€ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°")]
     private MenuDialogue _menuDialogueModel;
 
     // Start is called before the first frame update

@@ -1,24 +1,25 @@
-using TMPro;
+ï»¿using TMPro;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class ResultAnnouncementView : MonoBehaviour
 {
-    [SerializeField, Tooltip("ÅI“I‚ÈƒXƒRƒA‚ÌƒeƒLƒXƒg")]
+    [SerializeField, Tooltip("æœ€çµ‚çš„ãªã‚¹ã‚³ã‚¢ã®ãƒ†ã‚­ã‚¹ãƒˆ")]
     private GameObject _scoreText;
 
-    [SerializeField, Tooltip("‰ÁZ‚³‚ê‚½“Á•Êƒ{[ƒiƒX‚ÌƒeƒLƒXƒg")]
+    [SerializeField, Tooltip("åŠ ç®—ã•ã‚ŒãŸç‰¹åˆ¥ãƒœãƒ¼ãƒŠã‚¹ã®ãƒ†ã‚­ã‚¹ãƒˆ")]
     private GameObject _levelBonusText;
-    [SerializeField, Tooltip("‰ÁZ‚³‚ê‚½ƒ{[ƒiƒX‚ÌƒeƒLƒXƒg")]
+    [SerializeField, Tooltip("åŠ ç®—ã•ã‚ŒãŸãƒœãƒ¼ãƒŠã‚¹ã®ãƒ†ã‚­ã‚¹ãƒˆ")]
     private GameObject _additionalBonusText;
 
-    [SerializeField, Tooltip("Šl“¾ƒRƒCƒ“‚ÌƒeƒLƒXƒg")]
+    [SerializeField, Tooltip("ç²å¾—ã‚³ã‚¤ãƒ³ã®ãƒ†ã‚­ã‚¹ãƒˆ")]
     private GameObject _gotCoinText;
-    [SerializeField, Tooltip("Šl“¾ŒoŒ±’l‚ÌƒeƒLƒXƒg")]
+    [SerializeField, Tooltip("ç²å¾—çµŒé¨“å€¤ã®ãƒ†ã‚­ã‚¹ãƒˆ")]
     private GameObject _gotExpText;
 
-    [SerializeField, Tooltip("ƒnƒCƒXƒRƒA‚ÌƒeƒLƒXƒg")]
+    [SerializeField, Tooltip("ãƒã‚¤ã‚¹ã‚³ã‚¢ã®ãƒ†ã‚­ã‚¹ãƒˆ")]
     private GameObject _highScoreText;
-    [SerializeField, Tooltip("ƒ‰ƒ“ƒLƒ“ƒO‚ÌƒeƒLƒXƒg")]
+    [SerializeField, Tooltip("ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã®ãƒ†ã‚­ã‚¹ãƒˆ")]
     private GameObject _rankingText;
 
     private TextMeshProUGUI _scoreTmp;
@@ -40,59 +41,17 @@ public class ResultAnnouncementView : MonoBehaviour
         _rankingTmp = _rankingText.GetComponent<TextMeshProUGUI>();
     }
 
-    public void SetScoreText(Score score)
+    public async UniTask ShowResult(ResultInfo resultInfo)
     {
-        _scoreTmp.text = score.Value.ToString();
+        _scoreTmp.text = resultInfo.score.Value.ToString();
+        _levelBonusTmp.text = resultInfo.levelBonus.ToString();
+        _additionalBonusTmp.text = resultInfo.additionalBonus.ToString();
+        _gotCoinTmp.text = resultInfo.gotCoin.ToString();
+        _gotExpTmp.text = resultInfo.gotExp.ToString();
+        _highScoreTmp.text = resultInfo.highScore.ToString();
+        _rankingTmp.text = resultInfo.ranking.ToString();
 
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‚È‚Ç‚ğ‚±‚±‚É‹Lq
-
-    }
-
-    public void SetLevelBonusText(int levelBonus)
-    {
-        _levelBonusTmp.text = levelBonus.ToString();
-
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‚È‚Ç‚ğ‚±‚±‚É‹Lq
-
-    }
-
-    public void SetAdditionalBonusText(int additionalBonus)
-    {
-        _additionalBonusTmp.text = additionalBonus.ToString();
-
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‚È‚Ç‚ğ‚±‚±‚É‹Lq
-
-    }
-
-    public void SetCoinText(int coin)
-    {
-        _gotCoinTmp.text = coin.ToString();
-
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‚È‚Ç‚ğ‚±‚±‚É‹Lq
-
-    }
-
-    public void SetExpText(int exp)
-    {
-        _gotExpTmp.text = exp.ToString();
-
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‚È‚Ç‚ğ‚±‚±‚É‹Lq
-
-    }
-
-    public void SetHighScoreText(Score score)
-    {
-        _highScoreTmp.text = score.ToString();
-
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‚È‚Ç‚ğ‚±‚±‚É‹Lq
-
-    }
-
-    public void SetRankingText(int rank)
-    {
-        _rankingTmp.text = rank.ToString();
-
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‚È‚Ç‚ğ‚±‚±‚É‹Lq
+        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¨˜è¿°
 
     }
 }

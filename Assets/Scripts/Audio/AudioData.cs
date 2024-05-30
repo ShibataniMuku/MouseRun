@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,30 +12,30 @@ public class AudioData : ScriptableObject
 [System.Serializable]
 public class BgmClipData
 {
-    [SerializeField, Tooltip("ƒƒ‚‚ÍÀs‚É–³ŠÖŒW‚Å‚·")]
+    [SerializeField, Tooltip("ãƒ¡ãƒ¢ã¯å®Ÿè¡Œã«ç„¡é–¢ä¿‚ã§ã™")]
     private string _memo;
     [Space(5)]
 
-    [Tooltip("ƒTƒEƒ“ƒh‚Ìí•Ê")]
+    [Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã®ç¨®åˆ¥")]
     public BgmEnum type;
-    [Tooltip("ƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹")]
+    [Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«")]
     public AudioClip clip;
-    [Tooltip("‰¹—Ê"), Range(0, 1)]
+    [Tooltip("éŸ³é‡"), Range(0, 1)]
     public float volume = 0.5f;
 }
 
 [System.Serializable]
 public class SeClipData
 {
-    [SerializeField, Tooltip("ƒƒ‚‚ÍÀs‚É–³ŠÖŒW‚Å‚·")]
+    [SerializeField, Tooltip("ãƒ¡ãƒ¢ã¯å®Ÿè¡Œã«ç„¡é–¢ä¿‚ã§ã™")]
     private string _memo;
     [Space(5)]
 
-    [Tooltip("ƒTƒEƒ“ƒh‚Ìí•Ê")]
+    [Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã®ç¨®åˆ¥")]
     public SeEnum type;
-    [Tooltip("ƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹")]
+    [Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«")]
     public AudioClip clip;
-    [Tooltip("‰¹—Ê"), Range(0, 1)]
+    [Tooltip("éŸ³é‡"), Range(0, 1)]
     public float volume = 0.5f;
 }
 

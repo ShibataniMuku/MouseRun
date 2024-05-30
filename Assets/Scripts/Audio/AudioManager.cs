@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,16 +8,16 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField, Tooltip("ƒI[ƒfƒBƒIƒ~ƒLƒT[")]
+    [SerializeField, Tooltip("?I?[?f?B?I?~?L?T?[")]
     private AudioMixer _audioMixer;
-    [SerializeField, Tooltip("BGM—p‚ÌAudioSource")]
+    [SerializeField, Tooltip("BGM?p??AudioSource")]
     private AudioSource _bgmAudioSource;
-    [SerializeField, Tooltip("SE—p‚ÌAudioSource")]
+    [SerializeField, Tooltip("SE?p??AudioSource")]
     private AudioSource _seAudioSource;
 
     private AudioData _audioData;
     private BgmEnum stackedBgm;
-    private bool _isStacked = false; // BGM‚ªƒXƒ^ƒbƒN‚³‚ê‚Ä‚¢‚é‚©”Û‚©
+    private bool _isStacked = false; // BGM???X?^?b?N????????????????
 
     //public static AudioManager audioManagerInstance;
 
@@ -34,14 +34,14 @@ public class AudioManager : MonoBehaviour
 
         SceneManager.activeSceneChanged += PlayStackedBgm;
 
-        // ================ « ‚Æ‚è‚ ‚¦‚¸BGM‚ğƒeƒXƒg‚Å—¬‚µ‚Ä‚¢‚é ==============================
+        // ================ ?? ??????????BGM???e?X?g???????????? ==============================
        PlayBGM(BgmEnum.title);
     }
 
     /// <summary>
-    /// “¯ˆê‚ÌBGM‚ğ“o˜^‚µ‚Ä‚¢‚È‚¢‚©‚ğŒŸ¸
+    /// ??????BGM???o?^??????????????????
     /// </summary>
-    /// <param name="data">“o˜^BGMƒf[ƒ^</param>
+    /// <param name="data">?o?^BGM?f?[?^</param>
     private void CheckBgmOverlap(List<BgmClipData> data)
     {
         List<BgmEnum> bgm = new List<BgmEnum>();
@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
         {
             if (bgm.Contains(data[i].type))
             {
-                Debug.LogError(string.Format($"ƒTƒEƒ“ƒh {data[i].type} ‚ªd•¡‚µ‚Ä‚¢‚Ü‚·"));
+                Debug.LogError(string.Format($"?T?E???h {data[i].type} ???d????????????"));
             }
             else
             {
@@ -59,9 +59,9 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// “¯ˆê‚ÌSE‚ğ“o˜^‚µ‚Ä‚¢‚È‚¢‚©‚ğŒŸ¸
+    /// ??????SE???o?^??????????????????
     /// </summary>
-    /// <param name="data">“o˜^SEƒf[ƒ^</param>
+    /// <param name="data">?o?^SE?f?[?^</param>
     private void CheckSeOverlap(List<SeClipData> data)
     {
         List<SeEnum> bgm = new List<SeEnum>();
@@ -69,7 +69,7 @@ public class AudioManager : MonoBehaviour
         {
             if (bgm.Contains(data[i].type))
             {
-                Debug.LogError(string.Format($"ƒTƒEƒ“ƒh {data[i].type} ‚ªd•¡‚µ‚Ä‚¢‚Ü‚·"));
+                Debug.LogError(string.Format($"?T?E???h {data[i].type} ???d????????????"));
             }
             else
             {
@@ -79,10 +79,10 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// BgmClipData‚É“o˜^‚³‚ê‚½ƒTƒEƒ“ƒh‚ğAEnum‚Ì‡‚É•À‚×‘Ö‚¦‚é
+    /// BgmClipData???o?^???????T?E???h???AEnum????????????????
     /// </summary>
-    /// <param name="data">BGM‚Ì“o˜^ƒf[ƒ^</param>
-    /// <param name="bgm">’T‚µ‚½‚¢BGM‚ÌEnum</param>
+    /// <param name="data">BGM???o?^?f?[?^</param>
+    /// <param name="bgm">?T??????BGM??Enum</param>
     private int ConvertBgmEnumIntoIndex(List<BgmClipData> data, BgmEnum bgm)
     {
         for (int i = 0; i < data.Count; i++)
@@ -90,17 +90,17 @@ public class AudioManager : MonoBehaviour
             if (bgm == data[i].type) return i;
         }
 
-        Debug.LogError(string.Format($"w’è‚³‚ê‚½ {bgm} ‚Ìƒf[ƒ^‚ª‘¶İ‚µ‚Ü‚¹‚ñB" +
-            $"AudioData ‚Ü‚½‚Í BgmEnum ‚Ì­‚È‚­‚Æ‚àˆê•û‚É“o˜^‚³‚ê‚Ä‚¢‚È‚¢A‚ ‚é‚¢‚ÍAÄ¶‚·‚éBGM‚Ìƒf[ƒ^‚ğw’è‚µŠÔˆá‚¦‚Ä‚¢‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B"));
+        Debug.LogError(string.Format($"?w???????? {bgm} ???f?[?^???????????????B" +
+            $"AudioData ?????? BgmEnum ???????????????????o?^?????????????A?????????A????????BGM???f?[?^???w?????????????????????????????????????B"));
 
         return -1;
     }
 
     /// <summary>
-    /// SeClipData‚É“o˜^‚³‚ê‚½ƒTƒEƒ“ƒh‚ğAEnum‚Ì‡‚É•À‚×‘Ö‚¦‚é
+    /// SeClipData???o?^???????T?E???h???AEnum????????????????
     /// </summary>
-    /// <param name="data">SE‚Ì“o˜^ƒf[ƒ^</param>
-    /// <param name="bgm">’T‚µ‚½‚¢SE‚ÌEnum</param>
+    /// <param name="data">SE???o?^?f?[?^</param>
+    /// <param name="bgm">?T??????SE??Enum</param>
     private int ConvertSeEnumIntoIndex(List<SeClipData> data, SeEnum se)
     {
         for (int i = 0; i < data.Count; i++)
@@ -108,54 +108,54 @@ public class AudioManager : MonoBehaviour
             if (se == data[i].type) return i;
         }
 
-        Debug.LogError(string.Format($"w’è‚³‚ê‚½ {se} ‚Ìƒf[ƒ^‚ª‘¶İ‚µ‚Ü‚¹‚ñB" +
-            $"AudioData ‚Ü‚½‚Í BgmEnum ‚Ì­‚È‚­‚Æ‚àˆê•û‚É“o˜^‚³‚ê‚Ä‚¢‚È‚¢A‚ ‚é‚¢‚ÍAÄ¶‚·‚éSE‚Ìƒf[ƒ^‚ğw’è‚µŠÔˆá‚¦‚Ä‚¢‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B"));
+        Debug.LogError(string.Format($"?w???????? {se} ???f?[?^???????????????B" +
+            $"AudioData ?????? BgmEnum ???????????????????o?^?????????????A?????????A????????SE???f?[?^???w?????????????????????????????????????B"));
         return -1;
     }
 
     /// <summary>
-    /// ƒ}ƒXƒ^[‚Ì‰¹—Ê‚ğAudioMixer‚ÉƒZƒbƒg
+    /// ?}?X?^?[????????AudioMixer???Z?b?g
     /// </summary>
-    /// <param name="volume">‰¹—Ê</param>
+    /// <param name="volume">????</param>
     public void SetMasterVolumeForAudioMixer(float volume)
     {
-        //-80~0‚É•ÏŠ·
+        //-80~0??????
         var convertedVolume = Mathf.Clamp(Mathf.Log10(volume) * 20f, -80f, 0f);
-        //audioMixer‚É‘ã“ü
+        //audioMixer??????
         _audioMixer.SetFloat("Master", convertedVolume);
         Debug.Log($"MasterVolume: {volume}");
     }
 
     /// <summary>
-    /// BGM‚Ì‰¹—Ê‚ğAudioMixer‚ÉƒZƒbƒg
+    /// BGM????????AudioMixer???Z?b?g
     /// </summary>
-    /// <param name="volume">‰¹—Ê</param>
+    /// <param name="volume">????</param>
     public void SetBgmVolumeForAudioMixer(float volume)
     {
-        //-80~0‚É•ÏŠ·
+        //-80~0??????
         var convertedVolume = Mathf.Clamp(Mathf.Log10(volume) * 20f, -80f, 0f);
-        //audioMixer‚É‘ã“ü
+        //audioMixer??????
         _audioMixer.SetFloat("BGM", convertedVolume);
         Debug.Log($"BGMVolume: {volume}");
     }
 
     /// <summary>
-    /// SE‚Ì‰¹—Ê‚ğAudioMixer‚ÉƒZƒbƒg
+    /// SE????????AudioMixer???Z?b?g
     /// </summary>
-    /// <param name="volume">‰¹—Ê</param>
+    /// <param name="volume">????</param>
     public void SetSeVolumeForAudioMixer(float volume)
     {
-        //-80~0‚É•ÏŠ·
+        //-80~0??????
         var convertedVolume = Mathf.Clamp(Mathf.Log10(volume) * 20f, -80f, 0f);
-        //audioMixer‚É‘ã“ü
+        //audioMixer??????
         _audioMixer.SetFloat("SE", convertedVolume);
         Debug.Log($"SEVolume: {volume}");
     }
 
     /// <summary>
-    /// ƒTƒEƒ“ƒh‚Ìİ’è‚ğ“Ç‚İ‚Ş
+    /// ?T?E???h????????????????
     /// </summary>
-    /// <returns>İ’èƒf[ƒ^</returns>
+    /// <returns>?????f?[?^</returns>
     private AudioData GetAudioData()
     {
         string path = "AudioData";
@@ -164,9 +164,9 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// SE‚ğÄ¶‚·‚é
+    /// SE??????????
     /// </summary>
-    /// <param name="se">Ä¶‚·‚éSE</param>
+    /// <param name="se">????????SE</param>
     public void PlaySE(SeEnum se)
     {
         int index = this.ConvertSeEnumIntoIndex(_audioData.seData, se);
@@ -175,10 +175,10 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// SE‚ğÄ¶‚·‚é
+    /// SE??????????
     /// </summary>
-    /// <param name="se">Ä¶‚·‚éSE</param>
-    /// <param name="isSingle">true‚ğw’è‚µ‚Ä’Pˆê‚ÌSE‚ğ–Â‚ç‚·iÈ—ª‰Â”\j</param>
+    /// <param name="se">????????SE</param>
+    /// <param name="isSingle">true???w???????P????SE?????????i???????\?j</param>
     public void PlaySE(SeEnum se, bool isSingle)
     {
         int index = this.ConvertSeEnumIntoIndex(_audioData.seData, se);
@@ -191,10 +191,10 @@ public class AudioManager : MonoBehaviour
     public void PauseSE() { _seAudioSource.Pause(); }
     public void UnPauseSE() { _seAudioSource.UnPause(); }
 
-    // ƒV[ƒ“‚ª“Ç‚İ‚Ü‚ê‚½Û‚ÉŒÄ‚Î‚ê‚é
+    // ?V?[????????????????????????????
     private void PlayStackedBgm(Scene thisScene, Scene nextScene)
     {
-        // ƒXƒ^ƒbƒN‚³‚ê‚Ä‚¢‚é‚Æ‚«‚ÍAƒV[ƒ“‘JˆÚŒã‚ÉBGM‚ğ•Ï‰»
+        // ?X?^?b?N?????????????????A?V?[???J??????BGM??????
         if (_isStacked)
         {
             PlayBGM(stackedBgm);
@@ -203,9 +203,9 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Ÿ‚ÌƒV[ƒ“‚ª“Ç‚İ‚Ü‚ê‚½Û‚ÉÄ¶‚·‚éBGM‚ğ“o˜^‚·‚é
+    /// ?????V?[????????????????????????????BGM???o?^????
     /// </summary>
-    /// <param name="bgm">“o˜^‚·‚éBGM</param>
+    /// <param name="bgm">?o?^????BGM</param>
     public void StackBgm(BgmEnum bgm)
     {
         stackedBgm = bgm;
@@ -221,7 +221,7 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// w’è‚µ‚½ŠÔ‚©‚¯‚ÄBGM‚ğƒtƒF[ƒhƒAƒEƒg‚·‚é
+    /// ?w????????????????BGM???t?F?[?h?A?E?g????
     /// </summary>
     /// <param name="fadeTime"></param>
     public void StopBGM(float fadeTime)

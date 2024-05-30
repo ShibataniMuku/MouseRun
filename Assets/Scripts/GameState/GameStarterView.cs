@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System.Threading;
 using TMPro;
@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class GameStarterView : MonoBehaviour
 {
-    [SerializeField, Tooltip("READY?‚ÌƒeƒLƒXƒg")]
+    [SerializeField, Tooltip("READY?ã®ãƒ†ã‚­ã‚¹ãƒˆ")]
     private GameObject readyText;
-    [SerializeField, Tooltip("GO!‚ÌƒeƒLƒXƒg")]
+    [SerializeField, Tooltip("GO!ã®ãƒ†ã‚­ã‚¹ãƒˆ")]
     private GameObject goText;
 
-    [SerializeField, Tooltip("FINISH!‚ÌƒeƒLƒXƒg")]
+    [SerializeField, Tooltip("FINISH!ã®ãƒ†ã‚­ã‚¹ãƒˆ")]
     private GameObject finishText;
 
     private RectTransform readyRectTrans;
@@ -37,7 +37,7 @@ public class GameStarterView : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒQ[ƒ€ŠJn‚ÌƒAƒjƒ[ƒVƒ‡ƒ“iREADY...¨ GO!j
+    /// ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ï¼ˆREADY...â†’ GO!ï¼‰
     /// </summary>
     /// <param name="token"></param>
     /// <returns></returns>
@@ -50,16 +50,16 @@ public class GameStarterView : MonoBehaviour
             .Join(readyTmp.DOFade(0, 0.3f))
             .Join(goRectTrans.DOScale(1, 0.3f))
             .Join(goTmp.DOFade(1, 0.3f))
-           // .AppendCallback(() => _hasFinishedCountdown.SetValueAndForceNotify(true))  ‚±‚±‚Å‘€ì‰Â”\‚É‚·‚éI
+           // .AppendCallback(() => _hasFinishedCountdown.SetValueAndForceNotify(true))  ã“ã“ã§æ“ä½œå¯èƒ½ã«ã™ã‚‹ï¼
             .Append(goRectTrans.DOScale(1.8f, 0.7f))
             .Append(goRectTrans.DOScale(10, 0.4f))
             .Join(goTmp.DOFade(0, 0.3f));
 
-        await UniTask.Delay((int)(sequence.Duration() * 1000)); // Sequence‚ÌÄ¶ŠÔ‚ğƒ~ƒŠ•b‚É•ÏŠ·‚µ‚Ä‘Ò‚Â
+        await UniTask.Delay((int)(sequence.Duration() * 1000)); // Sequenceã®å†ç”Ÿæ™‚é–“ã‚’ãƒŸãƒªç§’ã«å¤‰æ›ã—ã¦å¾…ã¤
     }
 
     /// <summary>
-    /// ƒQ[ƒ€I—¹‚ÌƒAƒjƒ[ƒVƒ‡ƒ“iFINISH!j
+    /// ã‚²ãƒ¼ãƒ çµ‚äº†æ™‚ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ï¼ˆFINISH!ï¼‰
     /// </summary>
     /// <param name="token"></param>
     /// <returns></returns>

@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class AdsDialoguePresenter : DialoguePresenter
 {
-    [SerializeField, Tooltip("”wŒiƒ{ƒ^ƒ“‚ğŠÜ‚ŞAL‚Ìƒ_ƒCƒAƒƒO")]
+    [SerializeField, Tooltip("èƒŒæ™¯ãƒœã‚¿ãƒ³ã‚’å«ã‚€ã€åºƒå‘Šã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°")]
     private AdsDialogue _adsDialogueModel;
 
     // Start is called before the first frame update

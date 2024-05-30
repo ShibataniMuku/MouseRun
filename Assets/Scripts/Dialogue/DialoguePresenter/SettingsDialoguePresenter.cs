@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SettingsDialoguePresenter : DialoguePresenter
 {
-    [SerializeField, Tooltip("”wŒiƒ{ƒ^ƒ“‚ğŠÜ‚ŞAİ’è‚Ìƒ_ƒCƒAƒƒO")]
+    [SerializeField, Tooltip("èƒŒæ™¯ãƒœã‚¿ãƒ³ã‚’å«ã‚€ã€è¨­å®šã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°")]
     private SettingsDialogue _settingsDialogueModel;
 
     // Start is called before the first frame update

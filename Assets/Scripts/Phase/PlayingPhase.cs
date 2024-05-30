@@ -1,12 +1,12 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
 using Zenject;
 
 public class PlayingPhase : IPhase, IInitializable
 {
-    [SerializeField, Header("§ŒÀŠÔ")]
-    private const float DEFAULT_TIME = 60;
+    [SerializeField, Header("åˆ¶é™æ™‚é–“")]
+    private const float DEFAULT_TIME = 10;
 
     private TimeManager _timeManager;
     private SceneTransitioner _sceneTransitioner;
@@ -14,11 +14,11 @@ public class PlayingPhase : IPhase, IInitializable
     private ScoreManager _scoreManager;
     private AudioManager _audioManager;
 
-    // ƒQ[ƒ€ŠJn‚ÉŒÄ‚Î‚ê‚é
+    // ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã«å‘¼ã°ã‚Œã‚‹
     public delegate UniTask StartGameDelegate();
     public event StartGameDelegate OnStartGame;
 
-    // ƒQ[ƒ€I—¹‚ÉŒÄ‚Î‚ê‚é
+    // ã‚²ãƒ¼ãƒ çµ‚äº†æ™‚ã«å‘¼ã°ã‚Œã‚‹
     public delegate UniTask FinishGameDelegate();
     public event FinishGameDelegate OnFinishGame;
 
@@ -43,17 +43,17 @@ public class PlayingPhase : IPhase, IInitializable
     {
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
 
-        // ƒuƒ‰ƒbƒNƒCƒ“
+        // ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
         await _sceneTransitioner.CompleteTransitionSceneAndBlackIn();
 
         _timeManager.MainTimer.StartCountdown();
 
-        Debug.Log("ƒQ[ƒ€ƒXƒ^[ƒgI");
+        Debug.Log("ã‚²ãƒ¼ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆï¼");
         await OnStartGame();
 
         await UniTask.WaitUntil(() => _timeManager.MainTimer.IsCompleteCountdown);
 
-        Debug.Log("ƒQ[ƒ€I—¹I");
+        Debug.Log("ã‚²ãƒ¼ãƒ çµ‚äº†ï¼");
 
         await OnFinishGame();
 
@@ -61,7 +61,7 @@ public class PlayingPhase : IPhase, IInitializable
 
         if (!_canExtendGame)
         {
-            // ‰„’·•s‰Â”\‚È‚çAƒŠƒUƒ‹ƒg‰æ–Ê‚Ö‘JˆÚ
+            // å»¶é•·ä¸å¯èƒ½ãªã‚‰ã€ãƒªã‚¶ãƒ«ãƒˆç”»é¢ã¸é·ç§»
 
             _inheritorBetweenScenes.SetInheritedData("score", _scoreManager.CurerntScore.Value.Value);
 
@@ -76,6 +76,6 @@ public class PlayingPhase : IPhase, IInitializable
 
     }
 
-    public void SetOnStartGame(StartGameDelegate method) { OnStartGame += method; } // ƒQ[ƒ€ŠJn‚ÌƒfƒŠƒQ[ƒg‚É’Ç‰Á
-    public void SetOnFinishGame(FinishGameDelegate method) { OnFinishGame += method; } // ƒQ[ƒ€I—¹‚ÌƒfƒŠƒQ[ƒg‚É’Ç‰Á
+    public void SetOnStartGame(StartGameDelegate method) { OnStartGame += method; } // ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã®ãƒ‡ãƒªã‚²ãƒ¼ãƒˆã«è¿½åŠ 
+    public void SetOnFinishGame(FinishGameDelegate method) { OnFinishGame += method; } // ã‚²ãƒ¼ãƒ çµ‚äº†æ™‚ã®ãƒ‡ãƒªã‚²ãƒ¼ãƒˆã«è¿½åŠ 
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameData", menuName = "ScriptableObjects/CreateGameParamAsset")]
 public class GameData : ScriptableObject

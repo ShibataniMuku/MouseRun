@@ -1,4 +1,4 @@
-public enum TravelDirection // ã‰º¶‰E‚Ì•ûŒü
+ï»¿public enum TravelDirection // ä¸Šä¸‹å·¦å³ã®æ–¹å‘
 {
     up = 0,
     right = 1,
@@ -6,13 +6,13 @@ public enum TravelDirection // ã‰º¶‰E‚Ì•ûŒü
     left = 3
 }
 
-public enum Way // ‰ñ“]‚Ì•ûŒü
+public enum Way // å›è»¢ã®æ–¹å‘
 {
     clockwise,
     counterclockwise
 }
 
-public enum SceneEnum // ƒV[ƒ“–¼
+public enum SceneEnum // ã‚·ãƒ¼ãƒ³å
 {
     Title,
     Main, 

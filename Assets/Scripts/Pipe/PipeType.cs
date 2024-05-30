@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,19 +6,19 @@ using UnityEngine;
 [System.Serializable]
 public class PipeType
 {
-    [SerializeField, Tooltip("ƒƒ‚‚ÍÀs‚É–³ŠÖŒW‚Å‚·")]
+    [SerializeField, Tooltip("ãƒ¡ãƒ¢ã¯å®Ÿè¡Œã«ç„¡é–¢ä¿‚ã§ã™")]
     private string _memo;
     [Space(5)]
 
-    [Tooltip("ƒpƒCƒv‚Ìí—Ş")]
+    [Tooltip("ãƒ‘ã‚¤ãƒ—ã®ç¨®é¡")]
     public PipeEnum type;
-    [Tooltip("ƒpƒCƒvƒIƒuƒWƒFƒNƒg")]
+    [Tooltip("ãƒ‘ã‚¤ãƒ—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ")]
     public GameObject pipeObj;
-    [Tooltip("ƒtƒB[ƒ‹ƒh“à•”‚ÌoŒ»Šm—¦"), Range(0, 100)]
+    [Tooltip("ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å†…éƒ¨ã®å‡ºç¾ç¢ºç‡"), Range(0, 100)]
     public float inProbability = 50;
-    [Tooltip("ƒtƒB[ƒ‹ƒhŠOü‚ÌoŒ»Šm—¦"), Range(0, 100)]
+    [Tooltip("ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¤–å‘¨ã®å‡ºç¾ç¢ºç‡"), Range(0, 100)]
     public float outProbability = 50;
-    [Tooltip("ƒtƒB[ƒ‹ƒh‚ÌŠp‚ÌoŒ»Šm—¦"), Range(0, 100)]
+    [Tooltip("ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®è§’ã®å‡ºç¾ç¢ºç‡"), Range(0, 100)]
     public float edgeProbability = 50;
 }
 

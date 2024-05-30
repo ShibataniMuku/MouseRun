@@ -1,13 +1,13 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
 public class BackgroundPresenter : MonoBehaviour
 {
-    [SerializeField, Tooltip("”wŒi‚Ì–Ú‰B‚µ")]
+    [SerializeField, Tooltip("èƒŒæ™¯ã®ç›®éš ã—")]
     private BackgroundView _backgroundView;
-    [SerializeField, Tooltip("ƒ_ƒCƒAƒƒO‚ÌŠJ•Âó‹µ‚ğŠÇ—‚·‚éDialogueManager")]
+    [SerializeField, Tooltip("ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®é–‹é–‰çŠ¶æ³ã‚’ç®¡ç†ã™ã‚‹DialogueManager")]
     private DialogueManager _dialogueManager;
 
     // Start is called before the first frame update
