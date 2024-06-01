@@ -1,7 +1,12 @@
+<<<<<<< Updated upstream
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+=======
+﻿using UnityEngine;
+using System;
+>>>>>>> Stashed changes
 
 public class Score
 {
@@ -24,6 +29,17 @@ public class Score
 
     public static Score Sum(Score score1, Score score2)
     {
-        return new Score(score1.Value + score2.Value);
+        return new Score(score1._score + score2._score);
+    }
+
+    public bool CompareGreaterThan(Score score)
+    {
+        return _score > score._score;
+    }
+
+    public Score ConvertLevelBonus(Level level)
+    {
+        Score levelBonus = new Score((int)(_score * 0.1f * Math.Sqrt(level.Value)));
+        return levelBonus;
     }
 }
