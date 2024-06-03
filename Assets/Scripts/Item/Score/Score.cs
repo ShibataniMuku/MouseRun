@@ -26,4 +26,9 @@ public class Score
     {
         return new Score(score1.Value + score2.Value);
     }
+
+    public bool CompareGreaterThan(Score score)
+    {
+        return _score > score;
+    }
 }

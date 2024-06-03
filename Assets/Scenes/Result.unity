@@ -2197,6 +2197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1255051551}
   - component: {fileID: 1255051552}
+  - component: {fileID: 1255051553}
   m_Layer: 5
   m_Name: UIPresenter
   m_TagString: Untagged
@@ -2242,6 +2243,24 @@ MonoBehaviour:
   _gotExpText: {fileID: 372117212}
   _highScoreText: {fileID: 1359998737}
   _rankingText: {fileID: 608260144}
+--- !u!114 &1255051553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255051550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 1255051552}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 0
 --- !u!1 &1268499763
 GameObject:
   m_ObjectHideFlags: 0

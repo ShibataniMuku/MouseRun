@@ -41,7 +41,7 @@ public class ResultPhase : IPhase, IInitializable
         await UniTask.Delay(500);
 
         // 結果を表示
-        ResultInfo resultInfo = new ResultInfo(new Score(10), 10, 10, 10, 10, new Score(10), 10);
+        ResultInfo resultInfo = new ResultInfo(new Score(score), score, 10, 10, 10, new Score(10), 10);
         await OnShowResult(resultInfo);
     }
     
