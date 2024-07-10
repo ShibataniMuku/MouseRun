@@ -60,15 +60,12 @@ public class PipeManager : MonoBehaviour
 
         Vector3[] corners = new Vector3[4]; // RectTransformの左下のワールド座標を取得
         fieldArea.GetWorldCorners(corners);
-
-
+        
         float fieldSizeX = corners[2].x - corners[0].x;
         float fieldSizeY = corners[1].y - corners[0].y;
         Vector2 fieldSize = new Vector2(fieldSizeX, fieldSizeY); // パイプが表示されうるエリアの大きさ
         float gridSize = 0; // 1マス分の大きさ
         Vector2 margin; // 画面縦横比による余白
-
-
 
 
         // 縦横の長さによって、横に余白を作るか、縦に余白を作るかを決定

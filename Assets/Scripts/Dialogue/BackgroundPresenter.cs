@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UniRx;
+﻿using UniRx;
 using UnityEngine;
 
 public class BackgroundPresenter : MonoBehaviour
 {
-    [SerializeField, Tooltip("背景の目隠し")]
+    [SerializeField, Tooltip("ダイアログの後ろの背景")]
     private BackgroundView _backgroundView;
     [SerializeField, Tooltip("ダイアログの開閉状況を管理するDialogueManager")]
     private DialogueManager _dialogueManager;
@@ -13,6 +11,7 @@ public class BackgroundPresenter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // ダイアログの開閉状況を、後ろの背景に通知する
         _dialogueManager.IsOpeningDialogue
             .SkipLatestValueOnSubscribe()
             .Subscribe(x =>

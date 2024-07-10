@@ -404,6 +404,37 @@ MonoBehaviour:
   _openingButtonView: {fileID: 1891301260606747546}
   _closingButtonView: {fileID: 51945457}
   _settingsDialogueModel: {fileID: 7845648096781173582}
+--- !u!1 &260012408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 260012409}
+  m_Layer: 0
+  m_Name: ItemAnimationParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &260012409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260012408}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &352601011
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +673,7 @@ GameObject:
   - component: {fileID: 682400048}
   - component: {fileID: 682400047}
   - component: {fileID: 682400046}
+  - component: {fileID: 682400049}
   m_Layer: 0
   m_Name: ZenjectBinding
   m_TagString: Untagged
@@ -691,6 +723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - {fileID: 682400046}
+  - {fileID: 682400049}
   _identifier: 
   _useSceneContext: 0
   _context: {fileID: 0}
@@ -710,6 +743,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &682400049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682400045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb55d76a4ffd249a5bd5fdf6ddcc447f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationAcquiringItemParent: {fileID: 260012409}
+  _animationAcquiringItem: {fileID: 2613471922364951949, guid: ac1c5dbcf537b40e394d719887d3d6c4, type: 3}
 --- !u!1 &694945662
 GameObject:
   m_ObjectHideFlags: 0
@@ -2813,6 +2860,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5630120450669887568, guid: 25e96efaca4a9f9488c892b237c10629, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.013000488
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630120450669887568, guid: 25e96efaca4a9f9488c892b237c10629, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.20288086
+      objectReference: {fileID: 0}
     - target: {fileID: 7050962002581605950, guid: 25e96efaca4a9f9488c892b237c10629, type: 3}
       propertyPath: m_Name
       value: TransitionToTitleDialogue
@@ -3551,3 +3606,4 @@ SceneRoots:
   - {fileID: 1871239403}
   - {fileID: 766522113}
   - {fileID: 1427483112}
+  - {fileID: 260012409}

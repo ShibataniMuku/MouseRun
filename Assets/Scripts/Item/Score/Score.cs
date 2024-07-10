@@ -29,6 +29,6 @@ public class Score
 
     public bool CompareGreaterThan(Score score)
     {
-        return _score > score;
+        return _score > score.Value;
     }
 }

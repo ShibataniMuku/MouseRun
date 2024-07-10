@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour
     public bool SetHighScore(Score score)
     {
         // 現時点でのハイスコアを取得
-        int currentHighScore;
+        int currentHighScore = 0;
 
-        if(score.CompareGreaterThan(currentHighScore))
+        if(score.CompareGreaterThan(new Score(currentHighScore)))
         {
             // ハイスコアを更新
             return true;
@@ -20,35 +20,35 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public Score GetHighScore()
-    {
+    // public Score GetHighScore()
+    // {
 
-    }
+    // }
 
     public void AddCoin(Coin coin)
     {
 
     }
 
-    public bool DecrementCoin(Coin coin)
-    {
-        // 現時点での所有コインを取得
-        Coin currentCoin;
+    // public bool DecrementCoin(Coin coin)
+    // {
+    //     // 現時点での所有コインを取得
+    //     Coin currentCoin = new Coin();
 
-        if(currentCoin.CompareGreaterThan(coin))
-        {
-            // 所有コインを減らす処理
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    //     if(currentCoin.CompareGreaterThan(coin))
+    //     {
+    //         // 所有コインを減らす処理
+    //         return true;
+    //     }
+    //     else
+    //     {
+    //         return false;
+    //     }
+    // }
 
     public Coin GetCurrentCoin()
     {
-        Coin currentCoin;
+        Coin currentCoin = new Coin();
 
         // コインを取得する処理
 
@@ -60,9 +60,9 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void GetLevel()
+    public Level GetLevel()
     {
-        Level level;
+        Level level = new Level();
 
         // レベルを取得する処理
 

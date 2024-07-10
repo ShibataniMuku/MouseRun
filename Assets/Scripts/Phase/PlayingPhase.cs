@@ -6,7 +6,7 @@ using Zenject;
 public class PlayingPhase : IPhase, IInitializable
 {
     [SerializeField, Header("制限時間")]
-    private const float DEFAULT_TIME = 10;
+    private const float DEFAULT_TIME = 60;
 
     private TimeManager _timeManager;
     private SceneTransitioner _sceneTransitioner;

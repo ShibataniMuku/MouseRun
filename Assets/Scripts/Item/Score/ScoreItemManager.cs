@@ -12,6 +12,8 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
     private ItemManager _itemManager;
     [Inject]
     private PipeManager _pipeManager;
+    [Inject]
+    private ItemGeterAnimationManager _itemGeterAnimationManager;
 
     [SerializeField, Header("生成されるまでの時間")]
     private float _separateGeneratingItem = 3;
@@ -30,6 +32,9 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
         InitFieldItem();
     }
 
+    /// <summary>
+    /// ゲーム開始時に、アイテム複数個を一気に配置する
+    /// </summary>
     public void InitFieldItem()
     {
         // アイテムの配置の初期化
@@ -50,29 +55,40 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
             return;
         }
 
+        Vector3 pos = _pipeManager.pipes[grid.x, grid.y].transform.position;
+
         //アクティブでないオブジェクトをbulletsの中から探索
         foreach (Transform t in _scoreItemParent)
         {
             if (!t.gameObject.activeSelf)
             {
                 //非アクティブなオブジェクトの位置と回転を設定
-                t.SetPositionAndRotation(_pipeManager.pipes[grid.x, grid.y].transform.position, Quaternion.identity);
+                // t.SetPositionAndRotation(_pipeManager.pipes[grid.x, grid.y].transform.position, Quaternion.identity);
+                
                 //アクティブにする
                 t.gameObject.SetActive(true);
 
-                t.gameObject.GetComponent<IPickUpable>().InitPosition(grid);
+                t.gameObject.GetComponent<IPickUpable>()
+                    .ResetPosition(new FieldPosition(grid, pos));
+
+                // t.localPosition = _pipeManager.pipes[grid.x, grid.y].gameObject.transform.position + new Vector3(0, 0, 1);
+                // t.name = "aaaaaaaaaaaaaaaaaaa";
+                //
+                // Debug.Log($"{grid.x}, {grid.y} is position({_pipeManager.pipes[grid.x, grid.y].transform.position})");
+                // Debug.Log($"{t.position}です。");
+
                 return;
             }
         }
 
         //非アクティブなオブジェクトがない場合新規生成
         //生成時にbulletsの子オブジェクトにする
-        GameObject item = Instantiate(_scoreItem, _pipeManager.pipes[grid.x, grid.y].transform.position, Quaternion.identity, _scoreItemParent);
-        item.GetComponent<IPickUpable>().InitPosition(grid);
-        item.GetComponent<ScoreItem>().Init(this);
+        GameObject item = Instantiate(_scoreItem, pos, Quaternion.identity, _scoreItemParent);
+        item.GetComponent<IPickUpable>().ResetPosition(new FieldPosition(grid, pos));
+        item.GetComponent<ScoreItem>().Init(this, _itemGeterAnimationManager);
 
         // アイテム情報を登録
-        _itemManager.SetItemStatus(new Grid(grid.x, grid.y));
+        _itemManager.SetItemStatus(grid);
     }
 
     /// <summary>
@@ -91,11 +107,11 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
         GenerateItem(isNotPlaced[grid]);
     }
 
-    public void PickUpItem(int posX, int posY, Score score)
+    public void PickUpItem(Grid grid, Score score)
     {
         _scoreManager.AddScore(score);
         // アイテム情報を削除
-        _itemManager.RemoveItem(new Grid(posX, posY));
+        _itemManager.RemoveItem(grid);
 
         GenerateItem(_separateGeneratingItem);
     }
