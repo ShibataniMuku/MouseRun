@@ -19,7 +19,7 @@ public class DialogueManagerPresenter : MonoBehaviour
                 .SkipLatestValueOnSubscribe()
                 .Subscribe(x =>
                 {
-                    _dialogueModel.ControllDialogueLayer(x);
+                    _dialogueModel.OpenAndCloseDialogue(x);
                 })
                 .AddTo(this);
         }

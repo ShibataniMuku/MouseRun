@@ -54,6 +54,8 @@ public class ItemGeterAnimation : MonoBehaviour
                     tr.DOScale(Vector3.zero, shrinkDuration).SetDelay(0.3f);
                     tr.DORotate(tr.rotation.eulerAngles + new Vector3(0, 0, 360), shrinkDuration, RotateMode.FastBeyond360)
                         .OnComplete(() => gameObject.SetActive(false));
+                    
+                    Debug.Log("アニメーションが終了" + expandDuration);
                 });
         }
         

@@ -68,8 +68,7 @@ public class ScoreItemManager : MonoBehaviour, IItemManager, IInitializable
                 //アクティブにする
                 t.gameObject.SetActive(true);
 
-                t.gameObject.GetComponent<IPickUpable>()
-                    .ResetPosition(new FieldPosition(grid, pos));
+                t.gameObject.GetComponent<IPickUpable>().ResetPosition(new FieldPosition(grid, pos));
 
                 // t.localPosition = _pipeManager.pipes[grid.x, grid.y].gameObject.transform.position + new Vector3(0, 0, 1);
                 // t.name = "aaaaaaaaaaaaaaaaaaa";

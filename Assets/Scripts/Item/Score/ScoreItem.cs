@@ -17,7 +17,7 @@ public class ScoreItem : MonoBehaviour, IPickUpable
     {
         _scoreItemManager = scoreItemManager;
         _itemGeterAnimationManager = itemGeterAnimationManager;
-        PlayItemUpDownAnimation();
+        // PlayItemUpDownAnimation();
     }
 
     public void ResetPosition(FieldPosition fieldPosition)

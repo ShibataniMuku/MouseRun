@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     /// ダイアログの開閉があった際に呼ばれる
     /// </summary>
     /// <param name="isOpen">開いたか閉じたか</param>
-    public void ControllDialogueLayer(bool isOpen)
+    public void OpenAndCloseDialogue(bool isOpen)
     {
         if (isOpen)
         {
